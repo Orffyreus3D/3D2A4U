@@ -126,6 +126,7 @@
             btnCommit.TabIndex = 6;
             btnCommit.Text = "Commit";
             btnCommit.UseVisualStyleBackColor = true;
+            btnCommit.Click += btnCommit_Click;
             // 
             // lstValues
             // 
@@ -210,6 +211,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "EditLookupValues";
             Text = "EditLookupValues";
+            Load += EditLookupValues_Load;
             tblStats.ResumeLayout(false);
             tblStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudSortOrder).EndInit();
