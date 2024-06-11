@@ -14,6 +14,7 @@ namespace _3D2A4U
         public BarrelPattern BarrelPattern { get; set; }    
         public Caliber  Caliber { get; set; }   
         public CloneOf CloneOf { get; set; }
+        public string Description { get; set; }
         public Developer Developer { get; set; }    
         public DevTeam DevTeam { get; set; }
         public FileFormat FileFormat { get; set; } 

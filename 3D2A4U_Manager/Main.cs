@@ -37,7 +37,10 @@ namespace _3D2A4U_Manager
         /// <param name="e"></param>
         private void chkAllowLookupEdit_CheckedChanged(object sender, EventArgs e)
         {
-
+            foreach (FilterKvp fk in tblFileFilters.Controls.OfType<FilterKvp>())
+            {
+                fk.EditEnabled = ((CheckBox)sender).Checked;
+            }
         }
 
         private void btnNewFile_Click(object sender, EventArgs e)

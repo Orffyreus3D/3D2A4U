@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             tblStats = new TableLayoutPanel();
+            label3 = new Label();
+            txtName = new TextBox();
+            label2 = new Label();
+            txtID = new TextBox();
+            nudSortOrder = new NumericUpDown();
+            label1 = new Label();
+            btnCommit = new Button();
             lstValues = new ListBox();
             btnSave = new Button();
             btnCancel = new Button();
@@ -36,15 +43,8 @@
             btnRemoveValue = new Button();
             btnSortUp = new Button();
             btnSortDown = new Button();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            btnCommit = new Button();
             tblStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSortOrder).BeginInit();
             SuspendLayout();
             // 
             // tblStats
@@ -53,10 +53,10 @@
             tblStats.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.93296F));
             tblStats.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.06704F));
             tblStats.Controls.Add(label3, 0, 2);
-            tblStats.Controls.Add(textBox2, 1, 1);
+            tblStats.Controls.Add(txtName, 1, 1);
             tblStats.Controls.Add(label2, 0, 1);
-            tblStats.Controls.Add(textBox1, 1, 0);
-            tblStats.Controls.Add(numericUpDown1, 1, 2);
+            tblStats.Controls.Add(txtID, 1, 0);
+            tblStats.Controls.Add(nudSortOrder, 1, 2);
             tblStats.Controls.Add(label1, 0, 0);
             tblStats.Controls.Add(btnCommit, 1, 3);
             tblStats.Location = new Point(251, 12);
@@ -68,6 +68,64 @@
             tblStats.RowStyles.Add(new RowStyle());
             tblStats.Size = new Size(537, 113);
             tblStats.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 58);
+            label3.Name = "label3";
+            label3.Size = new Size(61, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Sort Order";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(153, 32);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(381, 23);
+            txtName.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 29);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Name";
+            // 
+            // txtID
+            // 
+            txtID.Enabled = false;
+            txtID.Location = new Point(153, 3);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(120, 23);
+            txtID.TabIndex = 1;
+            // 
+            // nudSortOrder
+            // 
+            nudSortOrder.Location = new Point(153, 61);
+            nudSortOrder.Name = "nudSortOrder";
+            nudSortOrder.Size = new Size(120, 23);
+            nudSortOrder.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(18, 15);
+            label1.TabIndex = 0;
+            label1.Text = "ID";
+            // 
+            // btnCommit
+            // 
+            btnCommit.Location = new Point(153, 90);
+            btnCommit.Name = "btnCommit";
+            btnCommit.Size = new Size(75, 23);
+            btnCommit.TabIndex = 6;
+            btnCommit.Text = "Commit";
+            btnCommit.UseVisualStyleBackColor = true;
             // 
             // lstValues
             // 
@@ -106,6 +164,7 @@
             btnAddValue.TabIndex = 3;
             btnAddValue.Text = "Add";
             btnAddValue.UseVisualStyleBackColor = true;
+            btnAddValue.Click += btnAddValue_Click;
             // 
             // btnRemoveValue
             // 
@@ -135,63 +194,6 @@
             btnSortDown.Text = "↓";
             btnSortDown.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(18, 15);
-            label1.TabIndex = 0;
-            label1.Text = "ID";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(153, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(120, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 29);
-            label2.Name = "label2";
-            label2.Size = new Size(39, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Name";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(153, 32);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(381, 23);
-            textBox2.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(3, 58);
-            label3.Name = "label3";
-            label3.Size = new Size(61, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Sort Order";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(153, 61);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(120, 23);
-            numericUpDown1.TabIndex = 5;
-            // 
-            // btnCommit
-            // 
-            btnCommit.Location = new Point(153, 90);
-            btnCommit.Name = "btnCommit";
-            btnCommit.Size = new Size(75, 23);
-            btnCommit.TabIndex = 6;
-            btnCommit.Text = "Commit";
-            btnCommit.UseVisualStyleBackColor = true;
-            // 
             // EditLookupValues
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -210,7 +212,7 @@
             Text = "EditLookupValues";
             tblStats.ResumeLayout(false);
             tblStats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSortOrder).EndInit();
             ResumeLayout(false);
         }
 
@@ -225,10 +227,10 @@
         private Button btnSortUp;
         private Button btnSortDown;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox txtName;
         private Label label2;
-        private TextBox textBox1;
-        private NumericUpDown numericUpDown1;
+        private TextBox txtID;
+        private NumericUpDown nudSortOrder;
         private Label label1;
         private Button btnCommit;
     }

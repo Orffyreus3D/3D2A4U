@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _3D2A4U;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace _3D2A4U_Manager
 {
     public partial class EditLookupValues : Form
     {
+        private LookupValue SelectedItem { get { return (LookupValue)lstValues?.SelectedItem; } set { lstValues.SelectedItem = value; } }
+
         public EditLookupValues()
         {
             InitializeComponent();
@@ -21,6 +24,13 @@ namespace _3D2A4U_Manager
         {
             if (lstValues.SelectedItem != null)
                 lstValues.Items.Remove(lstValues.SelectedItem);
+        }
+
+        private void btnAddValue_Click(object sender, EventArgs e)
+        {
+            txtID.Clear();
+            txtName.Clear();
+            nudSortOrder.Value = 0;
         }
     }
 }

@@ -69,6 +69,9 @@
             txtWadPath = new TextBox();
             label1 = new Label();
             toolTip1 = new ToolTip(components);
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             tabControl1.SuspendLayout();
             tabWelcome.SuspendLayout();
             tabFiles.SuspendLayout();
@@ -78,6 +81,9 @@
             spcFileSearch.SuspendLayout();
             tblFileFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gvFileSearchResults).BeginInit();
+            tabVendors.SuspendLayout();
+            tabResources.SuspendLayout();
+            tabConnect.SuspendLayout();
             tabSettings.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -386,6 +392,7 @@
             // 
             // tabVendors
             // 
+            tabVendors.Controls.Add(label5);
             tabVendors.Location = new Point(4, 24);
             tabVendors.Name = "tabVendors";
             tabVendors.Size = new Size(1416, 833);
@@ -395,6 +402,7 @@
             // 
             // tabResources
             // 
+            tabResources.Controls.Add(label6);
             tabResources.Location = new Point(4, 24);
             tabResources.Name = "tabResources";
             tabResources.Size = new Size(1416, 833);
@@ -404,6 +412,7 @@
             // 
             // tabConnect
             // 
+            tabConnect.Controls.Add(label7);
             tabConnect.Location = new Point(4, 24);
             tabConnect.Name = "tabConnect";
             tabConnect.Size = new Size(1416, 833);
@@ -528,6 +537,33 @@
             label1.TabIndex = 0;
             label1.Text = "Local Path";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(576, 302);
+            label5.Name = "label5";
+            label5.Size = new Size(94, 15);
+            label5.TabIndex = 0;
+            label5.Text = "Here be dragons";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(636, 313);
+            label6.Name = "label6";
+            label6.Size = new Size(130, 15);
+            label6.TabIndex = 0;
+            label6.Text = "They exist, but not here";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(610, 288);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 15);
+            label7.TabIndex = 0;
+            label7.Text = "Eventually";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -547,6 +583,12 @@
             spcFileSearch.ResumeLayout(false);
             tblFileFilters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gvFileSearchResults).EndInit();
+            tabVendors.ResumeLayout(false);
+            tabVendors.PerformLayout();
+            tabResources.ResumeLayout(false);
+            tabResources.PerformLayout();
+            tabConnect.ResumeLayout(false);
+            tabConnect.PerformLayout();
             tabSettings.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -595,5 +637,8 @@
         private CheckBox chkAllowLookupEdit;
         private Button btnNewFile;
         private ToolTip toolTip1;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }
