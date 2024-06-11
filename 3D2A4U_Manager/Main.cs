@@ -39,5 +39,18 @@ namespace _3D2A4U_Manager
         {
 
         }
+
+        private void btnNewFile_Click(object sender, EventArgs e)
+        {
+            //show the form for edit
+            NewFileForm newFile = new NewFileForm();
+            DialogResult dr = newFile.ShowDialog();
+
+            //save if we save
+            if (dr == DialogResult.OK)
+            {
+                //TODO
+            }
+        }
     }
 }

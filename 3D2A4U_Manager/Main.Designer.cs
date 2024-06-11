@@ -34,6 +34,7 @@
             tabWelcome = new TabPage();
             tabFiles = new TabPage();
             spcFileSearch = new SplitContainer();
+            btnNewFile = new Button();
             tblFileFilters = new TableLayoutPanel();
             fDeveloper = new FilterKvp();
             fDevTeam = new FilterKvp();
@@ -67,7 +68,6 @@
             label2 = new Label();
             txtWadPath = new TextBox();
             label1 = new Label();
-            btnNewFile = new Button();
             toolTip1 = new ToolTip(components);
             tabControl1.SuspendLayout();
             tabWelcome.SuspendLayout();
@@ -153,6 +153,18 @@
             spcFileSearch.TabIndex = 1;
             spcFileSearch.SplitterMoved += spcFileSearch_SplitterMoved;
             // 
+            // btnNewFile
+            // 
+            btnNewFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnNewFile.Location = new Point(891, 139);
+            btnNewFile.Name = "btnNewFile";
+            btnNewFile.Size = new Size(168, 23);
+            btnNewFile.TabIndex = 3;
+            btnNewFile.Text = "Add New Entry...";
+            toolTip1.SetToolTip(btnNewFile, "Use the filters to pick the values you want, enter text values, and save");
+            btnNewFile.UseVisualStyleBackColor = true;
+            btnNewFile.Click += btnNewFile_Click;
+            // 
             // tblFileFilters
             // 
             tblFileFilters.ColumnCount = 4;
@@ -188,6 +200,7 @@
             // fDeveloper
             // 
             fDeveloper.ComboBoxDataSource = null;
+            fDeveloper.EditEnabled = false;
             fDeveloper.LabelText = "Developer";
             fDeveloper.Location = new Point(3, 102);
             fDeveloper.MinimumSize = new Size(338, 30);
@@ -198,6 +211,7 @@
             // fDevTeam
             // 
             fDevTeam.ComboBoxDataSource = null;
+            fDevTeam.EditEnabled = false;
             fDevTeam.LabelText = "Dev Team";
             fDevTeam.Location = new Point(355, 102);
             fDevTeam.MinimumSize = new Size(338, 30);
@@ -208,6 +222,7 @@
             // fRailType
             // 
             fRailType.ComboBoxDataSource = null;
+            fRailType.EditEnabled = false;
             fRailType.LabelText = "Rail Type";
             fRailType.Location = new Point(3, 69);
             fRailType.MinimumSize = new Size(338, 30);
@@ -218,6 +233,7 @@
             // fGripPattern
             // 
             fGripPattern.ComboBoxDataSource = null;
+            fGripPattern.EditEnabled = false;
             fGripPattern.LabelText = "Grip Pattern";
             fGripPattern.Location = new Point(707, 36);
             fGripPattern.MinimumSize = new Size(338, 30);
@@ -228,6 +244,7 @@
             // fStockPattern
             // 
             fStockPattern.ComboBoxDataSource = null;
+            fStockPattern.EditEnabled = false;
             fStockPattern.LabelText = "Stock Pattern";
             fStockPattern.Location = new Point(355, 36);
             fStockPattern.MinimumSize = new Size(338, 30);
@@ -238,6 +255,7 @@
             // fFireControlPattern
             // 
             fFireControlPattern.ComboBoxDataSource = null;
+            fFireControlPattern.EditEnabled = false;
             fFireControlPattern.LabelText = "Fire Control Pattern";
             fFireControlPattern.Location = new Point(3, 36);
             fFireControlPattern.MinimumSize = new Size(338, 30);
@@ -248,6 +266,7 @@
             // fModelType
             // 
             fModelType.ComboBoxDataSource = null;
+            fModelType.EditEnabled = false;
             fModelType.LabelText = "Model Type";
             fModelType.Location = new Point(3, 3);
             fModelType.MinimumSize = new Size(338, 30);
@@ -258,6 +277,7 @@
             // fCloneOf
             // 
             fCloneOf.ComboBoxDataSource = null;
+            fCloneOf.EditEnabled = false;
             fCloneOf.LabelText = "Clone Of";
             fCloneOf.Location = new Point(355, 69);
             fCloneOf.MinimumSize = new Size(338, 30);
@@ -268,6 +288,7 @@
             // fFileFormat
             // 
             fFileFormat.ComboBoxDataSource = null;
+            fFileFormat.EditEnabled = false;
             fFileFormat.LabelText = "File Format";
             fFileFormat.Location = new Point(707, 69);
             fFileFormat.MinimumSize = new Size(338, 30);
@@ -278,6 +299,7 @@
             // fBarrelLength
             // 
             fBarrelLength.ComboBoxDataSource = null;
+            fBarrelLength.EditEnabled = false;
             fBarrelLength.LabelText = "Barrel Length";
             fBarrelLength.Location = new Point(1059, 69);
             fBarrelLength.MinimumSize = new Size(338, 30);
@@ -288,6 +310,7 @@
             // fBarrelPattern
             // 
             fBarrelPattern.ComboBoxDataSource = null;
+            fBarrelPattern.EditEnabled = false;
             fBarrelPattern.LabelText = "Barrel Pattern";
             fBarrelPattern.Location = new Point(1059, 36);
             fBarrelPattern.MinimumSize = new Size(338, 30);
@@ -298,6 +321,7 @@
             // fMagPattern
             // 
             fMagPattern.ComboBoxDataSource = null;
+            fMagPattern.EditEnabled = false;
             fMagPattern.LabelText = "Magazine Pattern";
             fMagPattern.Location = new Point(1059, 3);
             fMagPattern.MinimumSize = new Size(338, 30);
@@ -308,6 +332,7 @@
             // fCaliber
             // 
             fCaliber.ComboBoxDataSource = null;
+            fCaliber.EditEnabled = false;
             fCaliber.LabelText = "Caliber";
             fCaliber.Location = new Point(707, 3);
             fCaliber.MinimumSize = new Size(338, 30);
@@ -318,6 +343,7 @@
             // fReceiverPattern
             // 
             fReceiverPattern.ComboBoxDataSource = null;
+            fReceiverPattern.EditEnabled = false;
             fReceiverPattern.LabelText = "Receiver Pattern";
             fReceiverPattern.Location = new Point(355, 3);
             fReceiverPattern.MinimumSize = new Size(338, 30);
@@ -501,16 +527,6 @@
             label1.Size = new Size(62, 15);
             label1.TabIndex = 0;
             label1.Text = "Local Path";
-            // 
-            // btnNewFile
-            // 
-            btnNewFile.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnNewFile.Location = new Point(891, 139);
-            btnNewFile.Name = "btnNewFile";
-            btnNewFile.Size = new Size(168, 23);
-            btnNewFile.TabIndex = 3;
-            btnNewFile.Text = "Add New Entry...";
-            btnNewFile.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
