@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="_3D2A4U_Manager.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LocalPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.</Value>
+    </Setting>
+    <Setting Name="RepoUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.github.com</Value>
+    </Setting>
+    <Setting Name="FileVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="LastChecked" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1/1/1900</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
