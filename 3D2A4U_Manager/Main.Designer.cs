@@ -54,8 +54,11 @@
             btnClearResults = new Button();
             gvFileSearchResults = new DataGridView();
             tabVendors = new TabPage();
+            label5 = new Label();
             tabResources = new TabPage();
+            label6 = new Label();
             tabConnect = new TabPage();
+            label7 = new Label();
             tabSettings = new TabPage();
             groupBox1 = new GroupBox();
             chkAllowLookupEdit = new CheckBox();
@@ -69,9 +72,6 @@
             txtWadPath = new TextBox();
             label1 = new Label();
             toolTip1 = new ToolTip(components);
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
             tabControl1.SuspendLayout();
             tabWelcome.SuspendLayout();
             tabFiles.SuspendLayout();
@@ -209,10 +209,12 @@
             fDeveloper.EditEnabled = false;
             fDeveloper.LabelText = "Developer";
             fDeveloper.Location = new Point(3, 102);
+            fDeveloper.LookupKeyTypeName = "Developer";
             fDeveloper.MinimumSize = new Size(338, 30);
             fDeveloper.Name = "fDeveloper";
             fDeveloper.Size = new Size(346, 30);
             fDeveloper.TabIndex = 14;
+            fDeveloper.ValueRequested += f_ValueRequested;
             // 
             // fDevTeam
             // 
@@ -220,10 +222,12 @@
             fDevTeam.EditEnabled = false;
             fDevTeam.LabelText = "Dev Team";
             fDevTeam.Location = new Point(355, 102);
+            fDevTeam.LookupKeyTypeName = "DevTeam";
             fDevTeam.MinimumSize = new Size(338, 30);
             fDevTeam.Name = "fDevTeam";
             fDevTeam.Size = new Size(346, 30);
             fDevTeam.TabIndex = 13;
+            fDevTeam.ValueRequested += f_ValueRequested;
             // 
             // fRailType
             // 
@@ -231,10 +235,12 @@
             fRailType.EditEnabled = false;
             fRailType.LabelText = "Rail Type";
             fRailType.Location = new Point(3, 69);
+            fRailType.LookupKeyTypeName = "RailType";
             fRailType.MinimumSize = new Size(338, 30);
             fRailType.Name = "fRailType";
             fRailType.Size = new Size(346, 30);
             fRailType.TabIndex = 11;
+            fRailType.ValueRequested += f_ValueRequested;
             // 
             // fGripPattern
             // 
@@ -242,10 +248,12 @@
             fGripPattern.EditEnabled = false;
             fGripPattern.LabelText = "Grip Pattern";
             fGripPattern.Location = new Point(707, 36);
+            fGripPattern.LookupKeyTypeName = "GripPattern";
             fGripPattern.MinimumSize = new Size(338, 30);
             fGripPattern.Name = "fGripPattern";
             fGripPattern.Size = new Size(346, 30);
             fGripPattern.TabIndex = 8;
+            fGripPattern.ValueRequested += f_ValueRequested;
             // 
             // fStockPattern
             // 
@@ -253,10 +261,12 @@
             fStockPattern.EditEnabled = false;
             fStockPattern.LabelText = "Stock Pattern";
             fStockPattern.Location = new Point(355, 36);
+            fStockPattern.LookupKeyTypeName = "StockPattern";
             fStockPattern.MinimumSize = new Size(338, 30);
             fStockPattern.Name = "fStockPattern";
             fStockPattern.Size = new Size(346, 30);
             fStockPattern.TabIndex = 6;
+            fStockPattern.ValueRequested += f_ValueRequested;
             // 
             // fFireControlPattern
             // 
@@ -264,10 +274,12 @@
             fFireControlPattern.EditEnabled = false;
             fFireControlPattern.LabelText = "Fire Control Pattern";
             fFireControlPattern.Location = new Point(3, 36);
+            fFireControlPattern.LookupKeyTypeName = "FireControlPattern";
             fFireControlPattern.MinimumSize = new Size(338, 30);
             fFireControlPattern.Name = "fFireControlPattern";
             fFireControlPattern.Size = new Size(346, 30);
             fFireControlPattern.TabIndex = 4;
+            fFireControlPattern.ValueRequested += f_ValueRequested;
             // 
             // fModelType
             // 
@@ -275,10 +287,12 @@
             fModelType.EditEnabled = false;
             fModelType.LabelText = "Model Type";
             fModelType.Location = new Point(3, 3);
+            fModelType.LookupKeyTypeName = "ModelType";
             fModelType.MinimumSize = new Size(338, 30);
             fModelType.Name = "fModelType";
             fModelType.Size = new Size(346, 30);
             fModelType.TabIndex = 9;
+            fModelType.ValueRequested += f_ValueRequested;
             // 
             // fCloneOf
             // 
@@ -286,10 +300,12 @@
             fCloneOf.EditEnabled = false;
             fCloneOf.LabelText = "Clone Of";
             fCloneOf.Location = new Point(355, 69);
+            fCloneOf.LookupKeyTypeName = "CloneOf";
             fCloneOf.MinimumSize = new Size(338, 30);
             fCloneOf.Name = "fCloneOf";
             fCloneOf.Size = new Size(346, 30);
             fCloneOf.TabIndex = 10;
+            fCloneOf.ValueRequested += f_ValueRequested;
             // 
             // fFileFormat
             // 
@@ -297,10 +313,12 @@
             fFileFormat.EditEnabled = false;
             fFileFormat.LabelText = "File Format";
             fFileFormat.Location = new Point(707, 69);
+            fFileFormat.LookupKeyTypeName = "FileFormat";
             fFileFormat.MinimumSize = new Size(338, 30);
             fFileFormat.Name = "fFileFormat";
             fFileFormat.Size = new Size(346, 30);
             fFileFormat.TabIndex = 12;
+            fFileFormat.ValueRequested += f_ValueRequested;
             // 
             // fBarrelLength
             // 
@@ -308,10 +326,12 @@
             fBarrelLength.EditEnabled = false;
             fBarrelLength.LabelText = "Barrel Length";
             fBarrelLength.Location = new Point(1059, 69);
+            fBarrelLength.LookupKeyTypeName = "BarrelLength";
             fBarrelLength.MinimumSize = new Size(338, 30);
             fBarrelLength.Name = "fBarrelLength";
             fBarrelLength.Size = new Size(346, 30);
             fBarrelLength.TabIndex = 7;
+            fBarrelLength.ValueRequested += f_ValueRequested;
             // 
             // fBarrelPattern
             // 
@@ -319,10 +339,12 @@
             fBarrelPattern.EditEnabled = false;
             fBarrelPattern.LabelText = "Barrel Pattern";
             fBarrelPattern.Location = new Point(1059, 36);
+            fBarrelPattern.LookupKeyTypeName = "BarrelPattern";
             fBarrelPattern.MinimumSize = new Size(338, 30);
             fBarrelPattern.Name = "fBarrelPattern";
             fBarrelPattern.Size = new Size(346, 30);
             fBarrelPattern.TabIndex = 5;
+            fBarrelPattern.ValueRequested += f_ValueRequested;
             // 
             // fMagPattern
             // 
@@ -330,10 +352,12 @@
             fMagPattern.EditEnabled = false;
             fMagPattern.LabelText = "Magazine Pattern";
             fMagPattern.Location = new Point(1059, 3);
+            fMagPattern.LookupKeyTypeName = "MagazinePattern";
             fMagPattern.MinimumSize = new Size(338, 30);
             fMagPattern.Name = "fMagPattern";
             fMagPattern.Size = new Size(346, 30);
             fMagPattern.TabIndex = 3;
+            fMagPattern.ValueRequested += f_ValueRequested;
             // 
             // fCaliber
             // 
@@ -341,10 +365,12 @@
             fCaliber.EditEnabled = false;
             fCaliber.LabelText = "Caliber";
             fCaliber.Location = new Point(707, 3);
+            fCaliber.LookupKeyTypeName = "Caliber";
             fCaliber.MinimumSize = new Size(338, 30);
             fCaliber.Name = "fCaliber";
             fCaliber.Size = new Size(346, 30);
             fCaliber.TabIndex = 0;
+            fCaliber.ValueRequested += f_ValueRequested;
             // 
             // fReceiverPattern
             // 
@@ -352,10 +378,12 @@
             fReceiverPattern.EditEnabled = false;
             fReceiverPattern.LabelText = "Receiver Pattern";
             fReceiverPattern.Location = new Point(355, 3);
+            fReceiverPattern.LookupKeyTypeName = "ReceiverPattern";
             fReceiverPattern.MinimumSize = new Size(338, 30);
             fReceiverPattern.Name = "fReceiverPattern";
             fReceiverPattern.Size = new Size(346, 30);
             fReceiverPattern.TabIndex = 15;
+            fReceiverPattern.ValueRequested += f_ValueRequested;
             // 
             // btnSearch
             // 
@@ -400,6 +428,15 @@
             tabVendors.Text = "Vendors";
             tabVendors.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(576, 302);
+            label5.Name = "label5";
+            label5.Size = new Size(94, 15);
+            label5.TabIndex = 0;
+            label5.Text = "Here be dragons";
+            // 
             // tabResources
             // 
             tabResources.Controls.Add(label6);
@@ -410,6 +447,15 @@
             tabResources.Text = "Resources";
             tabResources.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(636, 313);
+            label6.Name = "label6";
+            label6.Size = new Size(130, 15);
+            label6.TabIndex = 0;
+            label6.Text = "They exist, but not here";
+            // 
             // tabConnect
             // 
             tabConnect.Controls.Add(label7);
@@ -419,6 +465,15 @@
             tabConnect.TabIndex = 5;
             tabConnect.Text = "Connect";
             tabConnect.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(610, 288);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 15);
+            label7.TabIndex = 0;
+            label7.Text = "Eventually";
             // 
             // tabSettings
             // 
@@ -536,33 +591,6 @@
             label1.Size = new Size(62, 15);
             label1.TabIndex = 0;
             label1.Text = "Local Path";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(576, 302);
-            label5.Name = "label5";
-            label5.Size = new Size(94, 15);
-            label5.TabIndex = 0;
-            label5.Text = "Here be dragons";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(636, 313);
-            label6.Name = "label6";
-            label6.Size = new Size(130, 15);
-            label6.TabIndex = 0;
-            label6.Text = "They exist, but not here";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(610, 288);
-            label7.Name = "label7";
-            label7.Size = new Size(61, 15);
-            label7.TabIndex = 0;
-            label7.Text = "Eventually";
             // 
             // Main
             // 

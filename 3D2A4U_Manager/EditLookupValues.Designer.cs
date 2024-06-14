@@ -130,12 +130,14 @@
             // 
             // lstValues
             // 
+            lstValues.DisplayMember = "Name";
             lstValues.FormattingEnabled = true;
             lstValues.ItemHeight = 15;
             lstValues.Location = new Point(12, 12);
             lstValues.Name = "lstValues";
             lstValues.Size = new Size(233, 394);
             lstValues.TabIndex = 0;
+            lstValues.ValueMember = "ID";
             // 
             // btnSave
             // 
@@ -146,6 +148,7 @@
             btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
@@ -156,6 +159,7 @@
             btnCancel.TabIndex = 2;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnAddValue
             // 

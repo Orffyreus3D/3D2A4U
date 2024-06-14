@@ -8,9 +8,17 @@ namespace _3D2A4U_Model
 {
     public abstract class LookupValue
     {
-        int ID { get; set; }
-        string Name { get; set; }
-        int SortOrder { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int SortOrder { get; set; }
+
+        public LookupValue() { }
+
+        public LookupValue(string name, int sortOrder)
+        {
+            Name = name;
+            SortOrder = sortOrder;
+        }
     }
 
     //strongly typed to make serialization easier

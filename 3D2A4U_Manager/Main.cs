@@ -1,10 +1,15 @@
+using _3D2A4U_BusinessLayer;
+using _3D2A4U_Manager.Properties;
+
 namespace _3D2A4U_Manager
 {
     public partial class Main : Form
     {
+        private _3D2A4UBusinessLayer biz;
         public Main()
         {
             InitializeComponent();
+            biz = new _3D2A4UBusinessLayer(Settings.Default.LocalPath);
         }
 
         /// <summary>
@@ -53,7 +58,13 @@ namespace _3D2A4U_Manager
             if (dr == DialogResult.OK)
             {
                 //TODO
+                MessageBox.Show("Not yet implemented :(");
             }
+        }
+
+        private void f_ValueRequested(object sender, string Key)
+        {
+            ((FilterKvp)sender).ComboBoxDataSource = biz.GetLookupValues(Key);
         }
     }
 }

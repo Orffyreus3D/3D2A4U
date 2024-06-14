@@ -14,7 +14,7 @@ namespace _3D2A4U_Manager
     public partial class FilterKvp : UserControl
     {
         #region Events
-        public delegate List<LookupValue> ValueRequest(string Key);
+        public delegate void ValueRequest(object sender, string Key);
         public event ValueRequest? ValueRequested;
         
         #endregion
@@ -25,6 +25,7 @@ namespace _3D2A4U_Manager
         public ComboBox ComboBox { get { return cbo; } }
         public object? ComboBoxDataSource { get { return ComboBox.DataSource; } set { ComboBox.DataSource = value; } }
         public bool EditEnabled { get { return btnEdit.Visible; } set { btnEdit.Visible = value; } }
+        public string LookupKeyTypeName { get; set; } = string.Empty;
         #endregion
 
         public FilterKvp()
@@ -34,8 +35,10 @@ namespace _3D2A4U_Manager
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditLookupValues editLookupValues = new EditLookupValues();
+            EditLookupValues editLookupValues = new EditLookupValues(LookupKeyTypeName);
             DialogResult result = editLookupValues.ShowDialog();
+            if (result == DialogResult.OK)
+                ValueRequested?.Invoke(this, LookupKeyTypeName);
         }
     }
 }
