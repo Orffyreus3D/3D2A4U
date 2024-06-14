@@ -1,6 +1,7 @@
 ﻿using JsonFlatFileDataStore;
 using _3D2A4U_Model;
 using System.Reflection;
+using System.ComponentModel.Design;
 
 namespace _3D2A4U_BusinessLayer
 {
@@ -43,6 +44,19 @@ namespace _3D2A4U_BusinessLayer
         public List<LookupValue> GetLookupValues(string typeName)
         {
            return ds.GetCollection<LookupValue>(typeName).AsQueryable().ToList();
+        }
+
+        public void Save(LookupValue value)
+        {
+            if (value.Id == -1)
+            {
+                //take highest ID and add one to it to get new assigned ID
+                value.Id = ds.GetCollection(value.GetType().Name).AsQueryable().OrderByDescending(lv => lv.Id).Select(lv => lv.Id).FirstOrDefault(0) + 1;
+                ds.ReplaceItem(value.Id.ToString(), value, true);
+                //ds.InsertItem(value.Id.ToString(), value);
+            }
+            else
+                ds.UpdateItem(value.Id.ToString(), value);
         }
     }
 }

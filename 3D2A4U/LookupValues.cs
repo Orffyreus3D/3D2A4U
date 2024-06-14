@@ -8,7 +8,7 @@ namespace _3D2A4U_Model
 {
     public abstract class LookupValue
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int SortOrder { get; set; }
 
@@ -16,6 +16,7 @@ namespace _3D2A4U_Model
 
         public LookupValue(string name, int sortOrder)
         {
+            Id = -1;
             Name = name;
             SortOrder = sortOrder;
         }
@@ -24,7 +25,9 @@ namespace _3D2A4U_Model
     //strongly typed to make serialization easier
     public class BarrelLength : LookupValue { }
     public class BarrelPattern : LookupValue { }
-    public class Caliber : LookupValue { }
+    public class Caliber : LookupValue {
+        public Caliber(string name, int sortOrder) : base(name, sortOrder) { }
+    }
     public class CloneOf : LookupValue { }
     public class Developer : LookupValue { }
     public class DevTeam : LookupValue { }

@@ -27,7 +27,7 @@ namespace _3D2A4U_Manager
             ValueType = valueType;
         }
 
-        public EditLookupValues(string valueTypeName) : this(Type.GetType(valueTypeName) ?? typeof(object)) {}
+        public EditLookupValues(string valueTypeName) : this(Assembly.GetAssembly(typeof(LookupValue))?.GetType("_3D2A4U_Model." + valueTypeName) ?? typeof(object)) {}
 
         private void btnRemoveValue_click(object sender, EventArgs e)
         {
@@ -47,13 +47,15 @@ namespace _3D2A4U_Manager
         {
             if (SelectedItem != null)
             {
-                SelectedItem.ID = int.Parse(txtID.Text);
+                //just update this selected item, all done for now
+                SelectedItem.Id = int.Parse(txtID.Text);
                 SelectedItem.Name = txtName.Text;
                 SelectedItem.SortOrder = (int)nudSortOrder.Value;
             }
             else
             {
-                var newVal = ValueType?.GetConstructor(new Type[] { ValueType })?.Invoke(new object[] { txtName.Text, nudSortOrder.Value });
+                //create a new instance of our specific LookupValue subtype
+                var newVal = ValueType?.GetConstructors()?[0]?.Invoke(new object[] { txtName.Text, (int)nudSortOrder.Value });
                 if (newVal != null)
                     lstValues.Items.Add(newVal);
             }
@@ -66,12 +68,17 @@ namespace _3D2A4U_Manager
         /// <param name="e"></param>
         private void EditLookupValues_Load(object sender, EventArgs e)
         {
-            lstValues.DataSource = biz.GetLookupValues(ValueType.Name);
+            //lstValues.DataSource = biz.GetLookupValues(ValueType.Name);
+            foreach (var item in biz.GetLookupValues(ValueType.Name))
+                lstValues.Items.Add(item);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            foreach (var item in lstValues.Items)
+            {
+                biz.Save((LookupValue)item);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
