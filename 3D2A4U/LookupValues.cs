@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _3D2A4U
+namespace _3D2A4U_Model
 {
     public abstract class LookupValue
     {

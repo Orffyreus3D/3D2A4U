@@ -10,7 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonFlatFileDataStore" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\3D2A4U\3D2A4U_Model.csproj" />
+    <ProjectReference Include="..\3D2A4U_BusinessLayer\3D2A4U_BusinessLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using _3D2A4U;
+﻿using _3D2A4U_Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +13,9 @@ namespace _3D2A4U_Manager
 {
     public partial class EditLookupValues : Form
     {
-        private LookupValue SelectedItem { get { return (LookupValue)lstValues?.SelectedItem; } set { lstValues.SelectedItem = value; } }
-        public Type ValueType { get; set; }
+        private LookupValue? SelectedItem { get { return (LookupValue?)lstValues?.SelectedItem; } set { lstValues.SelectedItem = value; } }
+        public Type ValueType { get; set; } = typeof(string);
+
 
         public EditLookupValues()
         {
