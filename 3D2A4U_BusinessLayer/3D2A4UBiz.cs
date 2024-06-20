@@ -5,15 +5,10 @@ using System.ComponentModel.Design;
 
 namespace _3D2A4U_BusinessLayer
 {
-    public class _3D2A4UBusinessLayer
+    public class _3D2A4UBusinessLayer(string path)
     {
-        private DataStore ds;
+        private readonly DataStore ds = new(path);
 
-        public _3D2A4UBusinessLayer(string path) 
-        {
-            ds = new DataStore(path);
-        }
-        
         public List<Model> GetModels(Dictionary<string,string> Filters)
         {
             var q = ds.GetCollection<Model>().AsQueryable();
@@ -48,15 +43,10 @@ namespace _3D2A4U_BusinessLayer
 
         public void Save(LookupValue value)
         {
-            if (value.Id == -1)
-            {
-                //take highest ID and add one to it to get new assigned ID
-                value.Id = ds.GetCollection(value.GetType().Name).AsQueryable().OrderByDescending(lv => lv.Id).Select(lv => lv.Id).FirstOrDefault(0) + 1;
-                ds.ReplaceItem(value.Id.ToString(), value, true);
-                //ds.InsertItem(value.Id.ToString(), value);
-            }
-            else
-                ds.UpdateItem(value.Id.ToString(), value);
+            dynamic coll = ds.GetCollection(value.GetType().Name);
+            if (value.Id == -1) //take highest ID and add one to it to get new assigned ID
+                value.Id = coll.GetNextIdValue(); 
+            coll.ReplaceOne(value.Id, value, true);
         }
     }
 }

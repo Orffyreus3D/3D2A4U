@@ -19,7 +19,8 @@ namespace _3D2A4U_Manager
     {
         private LookupValue? SelectedItem { get { return (LookupValue?)lstValues?.SelectedItem; } set { lstValues.SelectedItem = value; } }
         public Type ValueType { get; set; } = typeof(string);
-        private _3D2A4UBusinessLayer biz = new _3D2A4UBusinessLayer(Settings.Default.LocalPath);
+        private readonly _3D2A4UBusinessLayer biz = new(Settings.Default.LocalPath);
+        private readonly VirtualDatabase vdb = new(Settings.Default.LocalPath);
 
         public EditLookupValues(Type valueType)
         {
@@ -27,7 +28,7 @@ namespace _3D2A4U_Manager
             ValueType = valueType;
         }
 
-        public EditLookupValues(string valueTypeName) : this(Assembly.GetAssembly(typeof(LookupValue))?.GetType("_3D2A4U_Model." + valueTypeName) ?? typeof(object)) {}
+        public EditLookupValues(string valueTypeName) : this(Assembly.GetAssembly(typeof(LookupValue))?.GetType("_3D2A4U_Model." + valueTypeName) ?? typeof(object)) { }
 
         private void btnRemoveValue_click(object sender, EventArgs e)
         {
@@ -55,9 +56,13 @@ namespace _3D2A4U_Manager
             else
             {
                 //create a new instance of our specific LookupValue subtype
-                var newVal = ValueType?.GetConstructors()?[0]?.Invoke(new object[] { txtName.Text, (int)nudSortOrder.Value });
+                var newVal = Activator.CreateInstance(ValueType, [txtName.Text, (int)nudSortOrder.Value]);
                 if (newVal != null)
-                    lstValues.Items.Add(newVal);
+                    ((IList<dynamic>)lstValues.DataSource).Add(newVal);
+                //refresh the control so it shows the new guy
+                var tmp = lstValues.DataSource;
+                lstValues.DataSource = null;
+                lstValues.DataSource = tmp;
             }
         }
 
@@ -69,13 +74,16 @@ namespace _3D2A4U_Manager
         private void EditLookupValues_Load(object sender, EventArgs e)
         {
             //lstValues.DataSource = biz.GetLookupValues(ValueType.Name);
-            foreach (var item in biz.GetLookupValues(ValueType.Name))
-                lstValues.Items.Add(item);
+            //foreach (var item in biz.GetLookupValues(ValueType.Name))
+            //    lstValues.Items.Add(item);
+
+            //var bob = typeof(VirtualDatabase).GetProperty(ValueType.Name + "s")?.GetValue(vdb);
+            lstValues.DataSource = vdb.GetList(ValueType);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            foreach (var item in lstValues.Items)
+            foreach (var item in (IList<dynamic>)lstValues.DataSource)
             {
                 biz.Save((LookupValue)item);
             }
@@ -85,6 +93,17 @@ namespace _3D2A4U_Manager
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void lstValues_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LookupValue si = (LookupValue)lstValues.SelectedItem;
+            if (si != null)
+            {
+                txtID.Text = si.Id.ToString();
+                txtName.Text = si.Name;
+                nudSortOrder.Value = si.SortOrder;
+            }
         }
     }
 }

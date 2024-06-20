@@ -130,14 +130,15 @@
             // 
             // lstValues
             // 
-            lstValues.DisplayMember = "Name";
+            lstValues.DisplayMember = "name";
             lstValues.FormattingEnabled = true;
             lstValues.ItemHeight = 15;
             lstValues.Location = new Point(12, 12);
             lstValues.Name = "lstValues";
             lstValues.Size = new Size(233, 394);
             lstValues.TabIndex = 0;
-            lstValues.ValueMember = "ID";
+            lstValues.ValueMember = "id";
+            lstValues.SelectedIndexChanged += lstValues_SelectedIndexChanged;
             // 
             // btnSave
             // 

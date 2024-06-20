@@ -36,11 +36,13 @@
             // cbo
             // 
             cbo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cbo.DisplayMember = "Name";
             cbo.FormattingEnabled = true;
             cbo.Location = new Point(139, 3);
             cbo.Name = "cbo";
             cbo.Size = new Size(196, 23);
             cbo.TabIndex = 0;
+            cbo.ValueMember = "Id";
             // 
             // lbl
             // 
@@ -72,6 +74,7 @@
             MinimumSize = new Size(338, 30);
             Name = "FilterKvp";
             Size = new Size(338, 30);
+            Load += FilterKvp_Load;
             ResumeLayout(false);
             PerformLayout();
         }

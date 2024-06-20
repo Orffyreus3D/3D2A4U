@@ -61,6 +61,7 @@
             label7 = new Label();
             tabSettings = new TabPage();
             groupBox1 = new GroupBox();
+            chkDarkMode = new CheckBox();
             chkAllowLookupEdit = new CheckBox();
             textBox3 = new TextBox();
             label4 = new Label();
@@ -487,6 +488,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(chkDarkMode);
             groupBox1.Controls.Add(chkAllowLookupEdit);
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(label4);
@@ -503,6 +505,19 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Data Wad";
+            // 
+            // chkDarkMode
+            // 
+            chkDarkMode.AutoSize = true;
+            chkDarkMode.Checked = true;
+            chkDarkMode.CheckState = CheckState.Checked;
+            chkDarkMode.Location = new Point(873, 53);
+            chkDarkMode.Name = "chkDarkMode";
+            chkDarkMode.Size = new Size(84, 19);
+            chkDarkMode.TabIndex = 3;
+            chkDarkMode.Text = "Dark Mode";
+            chkDarkMode.UseVisualStyleBackColor = true;
+            chkDarkMode.CheckedChanged += chkDarkMode_CheckedChanged;
             // 
             // chkAllowLookupEdit
             // 
@@ -668,5 +683,6 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private CheckBox chkDarkMode;
     }
 }

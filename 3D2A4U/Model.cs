@@ -21,7 +21,7 @@ namespace _3D2A4U_Model
         public FileFormat FileFormat { get; set; }
         public FireControlPattern FireControlPattern { get; set; }
         public GripPattern GripPattern { get; set; }
-        public MagPattern MagPattern { get; set; }
+        public MagazinePattern MagPattern { get; set; }
         public ModelType ModelType { get; set; }
         public string Name { get; set; }
         public RailType RailType { get; set; }
