@@ -22,20 +22,20 @@ namespace _3D2A4U_BusinessLayer
         {
             FilePath = path;
             ds = new DataStore(path);
-            BarrelLength = ds.GetCollection<BarrelLength>();
-            BarrelPattern = ds.GetCollection<BarrelPattern>();
-            Caliber = ds.GetCollection<Caliber>();
-            Clone = ds.GetCollection<CloneOf>();
-            Developer = ds.GetCollection<Developer>();
-            DevTeam = ds.GetCollection<DevTeam>();
-            FileFormat = ds.GetCollection<FileFormat>();
-            FireControlPattern = ds.GetCollection<FireControlPattern>();
-            GripPattern = ds.GetCollection<GripPattern>();
-            MagPattern = ds.GetCollection<MagazinePattern>();
-            ModelType = ds.GetCollection<ModelType>();
-            RailType = ds.GetCollection<RailType>();
-            ReceiverPattern = ds.GetCollection<ReceiverPattern>();
-            StockPattern = ds.GetCollection<StockPattern>();
+            BarrelLength = (IList<dynamic>)GetList(typeof(BarrelLength).Name);
+            BarrelPattern = (IList<BarrelPattern>)GetList(typeof(BarrelPattern).Name);
+            Caliber = (IList<Caliber>)GetList(typeof(Caliber).Name);
+            Clone = (IList<CloneOf>)GetList(typeof(CloneOf).Name);
+            Developer = (IList<Developer>)GetList(typeof(Developer).Name);
+            DevTeam = (IList<DevTeam>)GetList(typeof(DevTeam).Name);
+            FileFormat = (IList<FileFormat>)GetList(typeof(FileFormat).Name);
+            FireControlPattern = (IList<FireControlPattern>)GetList(typeof(FireControlPattern).Name);
+            GripPattern = (IList<GripPattern>)GetList(typeof(GripPattern).Name);
+            MagPattern = (IList<MagazinePattern>)GetList(typeof(MagazinePattern).Name);
+            ModelType = (IList<ModelType>)GetList(typeof(ModelType).Name);
+            RailType = (IList<RailType>)GetList(typeof(RailType).Name);
+            ReceiverPattern = (IList<ReceiverPattern>)GetList(typeof(ReceiverPattern).Name);
+            StockPattern = (IList<StockPattern>)GetList(typeof(StockPattern).Name);
         }
 
         /// <summary>
@@ -72,6 +72,13 @@ namespace _3D2A4U_BusinessLayer
             return GetList(type);
         }
 
+        public LookupValue GetLookupValue(string typeName, string valueName)
+        {
+            //find the list in VDB that will have our value
+            PropertyInfo pi = this.GetType().GetProperties().Where(p=>p.PropertyType.IsSubclassOf(typeof(LookupValue)) && p.Name==typeName).FirstOrDefault();
+            return (LookupValue)pi.GetValue(this);
+        }
+
         public void Save(LookupValue lookupValue )
         {
             dynamic beaf = this.GetType().GetProperty(lookupValue.GetType().Name)?.GetValue(this);
@@ -81,21 +88,21 @@ namespace _3D2A4U_BusinessLayer
             }
         }
 
-        #region IDocumentCollections/Properties
-        public IDocumentCollection<BarrelLength> BarrelLength { get; set; }
-        public IDocumentCollection<BarrelPattern> BarrelPattern { get; set; }
-        public IDocumentCollection<Caliber> Caliber { get; set; }
-        public IDocumentCollection<CloneOf> Clone { get; set; }
-        public IDocumentCollection<Developer> Developer { get; set; }
-        public IDocumentCollection<DevTeam> DevTeam { get; set; }
-        public IDocumentCollection<FileFormat> FileFormat { get; set; }
-        public IDocumentCollection<FireControlPattern> FireControlPattern { get; set; }
-        public IDocumentCollection<GripPattern> GripPattern { get; set; }
-        public IDocumentCollection<MagazinePattern> MagPattern { get; set; }
-        public IDocumentCollection<ModelType> ModelType { get; set; }
-        public IDocumentCollection<RailType> RailType { get; set; }
-        public IDocumentCollection<ReceiverPattern> ReceiverPattern { get; set; }
-        public IDocumentCollection<StockPattern> StockPattern { get; set; }
+        #region ILists/Properties
+        public IList<BarrelLength> BarrelLength { get; set; }
+        public IList<BarrelPattern> BarrelPattern { get; set; }
+        public IList<Caliber> Caliber { get; set; }
+        public IList<CloneOf> Clone { get; set; }
+        public IList<Developer> Developer { get; set; }
+        public IList<DevTeam> DevTeam { get; set; }
+        public IList<FileFormat> FileFormat { get; set; }
+        public IList<FireControlPattern> FireControlPattern { get; set; }
+        public IList<GripPattern> GripPattern { get; set; }
+        public IList<MagazinePattern> MagPattern { get; set; }
+        public IList<ModelType> ModelType { get; set; }
+        public IList<RailType> RailType { get; set; }
+        public IList<ReceiverPattern> ReceiverPattern { get; set; }
+        public IList<StockPattern> StockPattern { get; set; }
         #endregion
     }
 }

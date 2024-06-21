@@ -57,7 +57,7 @@ namespace _3D2A4U_Manager
 
         private void btnNewFile_Click(object sender, EventArgs e)
         {
-            //show the form for edit
+            //show the form for edit54
             NewFileForm newFile = new NewFileForm();
             newFile.vdb = vdb;
             DialogResult dr = newFile.ShowDialog();
@@ -87,10 +87,10 @@ namespace _3D2A4U_Manager
                 this.ForeColor = Color.DarkGray;
                 this.BackColor = Color.Black;
             }
-            else 
+            else
             {
                 this.ForeColor = default;
-                this.BackColor= default;
+                this.BackColor = default;
             }
 
             ChangeColorMode(this.Controls);
@@ -107,12 +107,17 @@ namespace _3D2A4U_Manager
                 }
                 else
                 {
-                    control.ForeColor= default;
-                    control.BackColor= default;
+                    control.ForeColor = default;
+                    control.BackColor = default;
                 }
                 if (control.HasChildren)
                     ChangeColorMode(control.Controls);
             }
+        }
+
+        private void gvFileSearchResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -43,9 +43,12 @@ namespace _3D2A4U_Manager
             Model.Description = Description;
 
             //iterate thru the tree to add more properties
-            foreach (var dude in tvApplied.Nodes)
+            foreach (TreeNode typeNode in tvApplied.Nodes)
             {
-                dude.ToString();
+                foreach(TreeNode valueNode in typeNode.Nodes)
+                {
+                    Model.AddLookupValue(vdb.GetLookupValue(typeNode.Text, valueNode.Text));
+                }
             }
         }
 
@@ -62,7 +65,15 @@ namespace _3D2A4U_Manager
             //load the model if provided
             if (Model.Id != Guid.Empty)
             {
-                //kleeborp
+                this.Id = Model.Id;
+                this.Name = Model.Name;
+                this.Description = Model.Description;
+                this.Url = new Uri(Model.Url);
+
+                foreach (LookupValue lv in Model.LookupValues)
+                {
+                    AddValue(lv.GetType().Name, lv.Name);
+                }
             }
         }
 
@@ -84,10 +95,9 @@ namespace _3D2A4U_Manager
             txtValueFilter.Clear();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void AddValue(string parentNodeName, string valueName)
         {
             //find type node
-            string parentNodeName = (string)lbxAttributes.SelectedItem ?? string.Empty;
             TreeNode parentNode = tvApplied.Nodes.Find(parentNodeName, false).FirstOrDefault();
             if (parentNode == null) //add node
             {
@@ -96,11 +106,20 @@ namespace _3D2A4U_Manager
             }
 
             //add value
+            parentNode.Nodes.Add(valueName, valueName);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //get type (parent) and value (child)
+            string parentNodeName = (string)lbxAttributes.SelectedItem ?? string.Empty;
+            tvApplied.BeginUpdate(); //hold off repainting til we get thru the loop
             foreach (var guy in lbxValues.SelectedItems)
             {
                 string name = ((LookupValue)guy).Name.ToString();
-                parentNode.Nodes.Add(name,name);
+                AddValue(parentNodeName, name);
             }
+            tvApplied.EndUpdate();
         }
 
         /// <summary>

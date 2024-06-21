@@ -21,13 +21,38 @@ namespace _3D2A4U_Model
         public FileFormat FileFormat { get; set; }
         public FireControlPattern FireControlPattern { get; set; }
         public GripPattern GripPattern { get; set; }
-        public MagazinePattern MagPattern { get; set; }
+        public MagazinePattern MagazinePattern { get; set; }
         public ModelType ModelType { get; set; }
         public string Name { get; set; }
         public RailType RailType { get; set; }
         public ReceiverPattern ReceiverPattern { get; set; }
         public StockPattern StockPattern { get; set; }
         public string Url { get; set; }
+
+        /// <summary>
+        /// Returns collection of LookupValues where they aren't null
+        /// </summary>
+        public List<LookupValue> LookupValues { 
+            get
+            {
+                List<LookupValue> values = new List<LookupValue>();
+                foreach (LookupValue value in typeof(Model).GetProperties().Where(p => p.PropertyType.IsSubclassOf(typeof(LookupValue)) && ((LookupValue)p.GetValue(this)) != null).Select(p => p.GetValue(this)))
+                {
+                    values.Add(value);
+                }
+
+                return values;
+            } 
+        }
+
+        /// <summary>
+        /// Adds a LookupValue when the type is known but we don't want to bother looking for the right property
+        /// </summary>
+        /// <param name="value"></param>
+        public void AddLookupValue(LookupValue value)
+        {
+            this.GetType().GetProperty(value.GetType().Name)?.SetValue(this, value);
+        }
 
         public Model()
         {

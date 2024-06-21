@@ -418,6 +418,7 @@
             gvFileSearchResults.ReadOnly = true;
             gvFileSearchResults.Size = new Size(1410, 657);
             gvFileSearchResults.TabIndex = 0;
+            gvFileSearchResults.CellContentClick += gvFileSearchResults_CellContentClick;
             // 
             // tabVendors
             // 
