@@ -13,10 +13,12 @@ namespace _3D2A4U_BusinessLayer
 {
     public class VirtualDatabase
     {
-        private readonly DataStore ds;
+        private DataStore ds; //NOTE: reload me after writing to me somewhere else because cache
+        private string FilePath { get; set; }
 
         public VirtualDatabase(string path) 
         {
+            FilePath = path;
             ds = new DataStore(path);
             BarrelLength = ds.GetCollection<BarrelLength>();
             BarrelPattern = ds.GetCollection<BarrelPattern>();
@@ -33,6 +35,11 @@ namespace _3D2A4U_BusinessLayer
             ReceiverPattern = ds.GetCollection<ReceiverPattern>();
             StockPattern = ds.GetCollection<StockPattern>();
         }
+
+        /// <summary>
+        /// Reload the datastore, so that recent changes will show up
+        /// </summary>
+        public void BumpDS() { ds = new DataStore(FilePath); }
 
         /// <summary>
         /// Gets a List of ValueType from the  VirtualDB

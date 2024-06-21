@@ -14,7 +14,7 @@ namespace _3D2A4U_Manager
     public partial class FilterKvp : UserControl
     {
         #region Events
-        public delegate void ValueRequest(object sender, string Key);
+        public delegate void ValueRequest(object sender, string Key, bool BumpDataStore = false);
         public event ValueRequest? ValueRequested;
 
         #endregion
@@ -50,10 +50,10 @@ namespace _3D2A4U_Manager
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditLookupValues editLookupValues = new(LookupKeyTypeName);
+            EditLookupValues editLookupValues = new(LookupKeyTypeName) { Text = "Edit  " + this.LabelText };
             DialogResult result = editLookupValues.ShowDialog();
             if (result == DialogResult.OK)
-                ValueRequested?.Invoke(this, LookupKeyTypeName);
+                ValueRequested?.Invoke(this, LookupKeyTypeName, true);
         }
 
         private void FilterKvp_Load(object sender, EventArgs e)

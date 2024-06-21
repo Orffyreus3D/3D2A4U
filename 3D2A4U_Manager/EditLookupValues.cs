@@ -61,7 +61,7 @@ namespace _3D2A4U_Manager
                     ((IList<dynamic>)lstValues.DataSource).Add(newVal);
                 //refresh the control so it shows the new guy
                 var tmp = lstValues.DataSource;
-                lstValues.DataSource = null;
+                lstValues.DataSource = new List<LookupValue>(); //throw a dummy list in here so we don't lose our Display- and ValueMembers
                 lstValues.DataSource = tmp;
             }
         }

@@ -69,10 +69,12 @@ namespace _3D2A4U_Manager
             }
         }
 
-        private void f_ValueRequested(object sender, string Key)
+        private void f_ValueRequested(object sender, string Key, bool BumpDataStore)
         {
             Type keyType = Assembly.GetAssembly(typeof(LookupValue))?.GetType("_3D2A4U_Model." + Key);
             Debug.Assert(keyType != null, string.Format("keyType is null for {0}!", ((Control)sender).Name));
+            if (BumpDataStore)
+                vdb.BumpDS();
             ((FilterKvp)sender).ComboBoxDataSource = vdb.GetList(keyType);
         }
 
