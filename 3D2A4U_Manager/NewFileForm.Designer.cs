@@ -42,6 +42,9 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
+            btnAdd = new Button();
+            txtValueFilter = new TextBox();
+            btnRemoveApplied = new Button();
             SuspendLayout();
             // 
             // label1
@@ -133,6 +136,7 @@
             tvApplied.Name = "tvApplied";
             tvApplied.Size = new Size(245, 306);
             tvApplied.TabIndex = 10;
+            tvApplied.AfterSelect += tvApplied_AfterSelect;
             // 
             // lbxValues
             // 
@@ -142,9 +146,10 @@
             lbxValues.Location = new Point(271, 232);
             lbxValues.Name = "lbxValues";
             lbxValues.SelectionMode = SelectionMode.MultiExtended;
-            lbxValues.Size = new Size(170, 304);
+            lbxValues.Size = new Size(170, 274);
             lbxValues.TabIndex = 11;
             lbxValues.ValueMember = "Id";
+            lbxValues.SelectedIndexChanged += lbxValues_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -173,11 +178,45 @@
             label6.TabIndex = 14;
             label6.Text = "Applied";
             // 
+            // btnAdd
+            // 
+            btnAdd.Enabled = false;
+            btnAdd.Location = new Point(398, 512);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(43, 26);
+            btnAdd.TabIndex = 16;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // txtValueFilter
+            // 
+            txtValueFilter.Location = new Point(271, 512);
+            txtValueFilter.Name = "txtValueFilter";
+            txtValueFilter.PlaceholderText = "Filter Values";
+            txtValueFilter.Size = new Size(121, 23);
+            txtValueFilter.TabIndex = 17;
+            txtValueFilter.TextChanged += txtValueFilter_TextChanged;
+            // 
+            // btnRemoveApplied
+            // 
+            btnRemoveApplied.Enabled = false;
+            btnRemoveApplied.Location = new Point(670, 232);
+            btnRemoveApplied.Name = "btnRemoveApplied";
+            btnRemoveApplied.Size = new Size(25, 23);
+            btnRemoveApplied.TabIndex = 18;
+            btnRemoveApplied.Text = "X";
+            btnRemoveApplied.UseVisualStyleBackColor = true;
+            btnRemoveApplied.Click += btnRemoveApplied_Click;
+            // 
             // NewFileForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(713, 579);
+            Controls.Add(btnRemoveApplied);
+            Controls.Add(txtValueFilter);
+            Controls.Add(btnAdd);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -192,7 +231,7 @@
             Controls.Add(label2);
             Controls.Add(txtName);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "NewFileForm";
             Text = "File Editor";
             TopMost = true;
@@ -217,5 +256,8 @@
         private Label label4;
         private Label label5;
         private Label label6;
+        private Button btnAdd;
+        private TextBox txtValueFilter;
+        private Button btnRemoveApplied;
     }
 }
