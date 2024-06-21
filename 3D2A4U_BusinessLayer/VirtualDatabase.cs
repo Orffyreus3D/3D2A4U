@@ -4,7 +4,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -61,6 +63,13 @@ namespace _3D2A4U_BusinessLayer
             }
 
             return retval.OrderBy(l=> l.SortOrder).ThenBy(l=>l.Name).ToList();
+        }
+
+        public IList GetList(string ValueTypeName)
+        {
+            Type type = Assembly.GetAssembly(typeof(Model)).GetType("_3D2A4U_Model." + ValueTypeName);
+            Debug.Assert(type != null,"Type " + ValueTypeName + " was not found in the Model's assembly");
+            return GetList(type);
         }
 
         public void Save(LookupValue lookupValue )

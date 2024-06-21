@@ -59,11 +59,13 @@ namespace _3D2A4U_Manager
         {
             //show the form for edit
             NewFileForm newFile = new NewFileForm();
+            newFile.vdb = vdb;
             DialogResult dr = newFile.ShowDialog();
 
             //save if we save
             if (dr == DialogResult.OK)
             {
+                biz.SaveModel(newFile?.Model);
                 //TODO
                 MessageBox.Show("Not yet implemented :(");
             }

@@ -27,11 +27,11 @@ namespace _3D2A4U_Model
         public RailType RailType { get; set; }
         public ReceiverPattern ReceiverPattern { get; set; }
         public StockPattern StockPattern { get; set; }
-        public Url Url { get; set; }
+        public string Url { get; set; }
 
         public Model()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.Empty;
         }
     }
 }
