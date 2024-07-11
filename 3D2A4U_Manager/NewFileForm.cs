@@ -1,6 +1,7 @@
 ﻿using _3D2A4U_BusinessLayer;
 using _3D2A4U_Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,7 @@ namespace _3D2A4U_Manager
 
         public Model Model { get; set; } = new Model();
 
-        private IList<dynamic> Values { get; set; } = new List<object>();
+        private IList Values { get; set; } = new List<object>();
 
         public NewFileForm()
         {
@@ -82,7 +83,7 @@ namespace _3D2A4U_Manager
             //load the next listbox over with the values for this guy
             string sv = (string)lbxAttributes.SelectedItem ?? string.Empty;
             if (!string.IsNullOrEmpty(sv))
-                Values = (List<object>)vdb.GetList(sv);
+                Values = (IList)vdb.GetList(sv);
             else
                 Values = (new List<object>());
             lbxValues.DataSource = Values;
@@ -129,7 +130,7 @@ namespace _3D2A4U_Manager
         /// <param name="e"></param>
         private void txtValueFilter_TextChanged(object sender, EventArgs e)
         {
-            lbxValues.DataSource = Values.Where(v => ((string)v.Name).Contains(txtValueFilter.Text)).ToList();
+            lbxValues.DataSource = (Values as IList<LookupValue>).Where(v => ((string)v.Name).Contains(txtValueFilter.Text)).ToList();
             lbxValues.DisplayMember = "Name";
             lbxValues.ValueMember = "Id";
         }

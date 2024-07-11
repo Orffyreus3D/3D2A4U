@@ -60,10 +60,7 @@ namespace _3D2A4U_Manager
             //show the form for edit54
             NewFileForm newFile = new NewFileForm();
             newFile.vdb = vdb;
-            //TEST STUB
-            DialogResult dr = DialogResult.Cancel;
-            newFile.Show();
-            //DialogResult dr = newFile.ShowDialog(); //TODO: ShowDialog instead
+            DialogResult dr = newFile.ShowDialog();
 
             //save if we save
             if (dr == DialogResult.OK)

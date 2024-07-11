@@ -510,13 +510,11 @@
             // chkDarkMode
             // 
             chkDarkMode.AutoSize = true;
-            chkDarkMode.Checked = true;
-            chkDarkMode.CheckState = CheckState.Checked;
             chkDarkMode.Location = new Point(873, 53);
             chkDarkMode.Name = "chkDarkMode";
-            chkDarkMode.Size = new Size(84, 19);
+            chkDarkMode.Size = new Size(164, 19);
             chkDarkMode.TabIndex = 3;
-            chkDarkMode.Text = "Dark Mode";
+            chkDarkMode.Text = "Dark Mode (experimental)";
             chkDarkMode.UseVisualStyleBackColor = true;
             chkDarkMode.CheckedChanged += chkDarkMode_CheckedChanged;
             // 
