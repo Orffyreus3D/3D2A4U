@@ -27,11 +27,12 @@ namespace _3D2A4U_Manager
             get { return ComboBox.DataSource; } 
             set {
                 //add a dummy blank to the top here
-                if (value != null && ((IList<dynamic>)value).Count > 0)
+                if (value != null && ((System.Collections.IList)value).Count > 0)
                 {
-                    var dummy = Activator.CreateInstance(((IList<dynamic>)value)?.First().GetType(), new dynamic[] { string.Empty, (int)-1 });
-                    dummy.Id = -1;
-                    ((IList<dynamic>)value)?.Insert(0, dummy);
+                    //var dummy = Activator.CreateInstance(((IList<dynamic>)value)?.First().GetType(), new dynamic[] { string.Empty, (int)-1 });
+                    var dummy = Activator.CreateInstance(value.GetType().GenericTypeArguments.Single());
+                    ((LookupValue)dummy).Id = -1;
+                    ((System.Collections.IList)value)?.Insert(0, dummy);
 
                     //assign the value
                     ComboBox.DataSource = value;

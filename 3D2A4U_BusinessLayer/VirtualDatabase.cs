@@ -22,20 +22,20 @@ namespace _3D2A4U_BusinessLayer
         {
             FilePath = path;
             ds = new DataStore(path);
-            BarrelLength = (IList<dynamic>)GetList(typeof(BarrelLength).Name);
-            BarrelPattern = (IList<BarrelPattern>)GetList(typeof(BarrelPattern).Name);
-            Caliber = (IList<Caliber>)GetList(typeof(Caliber).Name);
-            Clone = (IList<CloneOf>)GetList(typeof(CloneOf).Name);
-            Developer = (IList<Developer>)GetList(typeof(Developer).Name);
-            DevTeam = (IList<DevTeam>)GetList(typeof(DevTeam).Name);
-            FileFormat = (IList<FileFormat>)GetList(typeof(FileFormat).Name);
-            FireControlPattern = (IList<FireControlPattern>)GetList(typeof(FireControlPattern).Name);
-            GripPattern = (IList<GripPattern>)GetList(typeof(GripPattern).Name);
-            MagPattern = (IList<MagazinePattern>)GetList(typeof(MagazinePattern).Name);
-            ModelType = (IList<ModelType>)GetList(typeof(ModelType).Name);
-            RailType = (IList<RailType>)GetList(typeof(RailType).Name);
-            ReceiverPattern = (IList<ReceiverPattern>)GetList(typeof(ReceiverPattern).Name);
-            StockPattern = (IList<StockPattern>)GetList(typeof(StockPattern).Name);
+            BarrelLength = GetList<BarrelLength>();
+            BarrelPattern = GetList<BarrelPattern>();
+            Caliber = GetList<Caliber>();
+            Clone = GetList<CloneOf>();
+            Developer = GetList<Developer>();
+            DevTeam = GetList<DevTeam>();
+            FileFormat = GetList<FileFormat>();
+            FireControlPattern = GetList<FireControlPattern>();
+            GripPattern = GetList<GripPattern>();
+            MagPattern = GetList<MagazinePattern>();
+            ModelType = GetList<ModelType>();
+            RailType = GetList<RailType>();
+            ReceiverPattern = GetList<ReceiverPattern>();
+            StockPattern = GetList<StockPattern>();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace _3D2A4U_BusinessLayer
         /// <returns>A list of the entries of this type</returns>
         public IList GetList(Type ValueType)
         {
-            List<dynamic> retval = [];
+            dynamic retval = Activator.CreateInstance(typeof(List<>).MakeGenericType(ValueType));
             dynamic nads = ds.GetCollection(ValueType.Name).AsQueryable().ToList();
 
             foreach (var item in nads)
@@ -59,10 +59,19 @@ namespace _3D2A4U_BusinessLayer
                 ((LookupValue)biff).Id = (int)item.id;
                 ((LookupValue)biff).Name = item.name;
                 ((LookupValue)biff).SortOrder = (int)item.sortOrder;
-                retval.Add(biff);
+                ((IList)retval).Add((LookupValue)biff);
             }
 
-            return retval.OrderBy(l=> l.SortOrder).ThenBy(l=>l.Name).ToList();
+            return (IList)retval; //.OrderBy(l=> l.SortOrder).ThenBy(l=>l.Name).ToList();
+        }
+
+        public IList<T> GetList<T>() where T : LookupValue
+        {
+            Type valueType = typeof(T);
+            IList<T> retval = new List<T>();
+            retval = (IList<T>)GetList(valueType);
+            retval = retval.OrderBy(l => (l as LookupValue).SortOrder).ThenBy(l => l.Name).ToList();
+            return retval;
         }
 
         public IList GetList(string ValueTypeName)
