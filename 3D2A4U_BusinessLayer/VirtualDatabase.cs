@@ -25,13 +25,13 @@ namespace _3D2A4U_BusinessLayer
             BarrelLength = GetList<BarrelLength>();
             BarrelPattern = GetList<BarrelPattern>();
             Caliber = GetList<Caliber>();
-            Clone = GetList<CloneOf>();
+            CloneOf = GetList<CloneOf>();
             Developer = GetList<Developer>();
             DevTeam = GetList<DevTeam>();
             FileFormat = GetList<FileFormat>();
             FireControlPattern = GetList<FireControlPattern>();
             GripPattern = GetList<GripPattern>();
-            MagPattern = GetList<MagazinePattern>();
+            MagazinePattern = GetList<MagazinePattern>();
             ModelType = GetList<ModelType>();
             RailType = GetList<RailType>();
             ReceiverPattern = GetList<ReceiverPattern>();
@@ -84,8 +84,10 @@ namespace _3D2A4U_BusinessLayer
         public LookupValue GetLookupValue(string typeName, string valueName)
         {
             //find the list in VDB that will have our value
-            PropertyInfo pi = this.GetType().GetProperties().Where(p=>p.PropertyType.IsSubclassOf(typeof(LookupValue)) && p.Name==typeName).FirstOrDefault();
-            return (LookupValue)pi.GetValue(this);
+            //PropertyInfo pi = this.GetType().GetProperties().Where(p=>p.PropertyType.IsSubclassOf(typeof(LookupValue)) && p.Name==typeName).FirstOrDefault();
+            PropertyInfo pi = this.GetType().GetProperties().Where(p => p.Name == typeName).FirstOrDefault();
+            IList valueCollection = (IList)pi.GetValue(this);
+            return (LookupValue)valueCollection.Cast<LookupValue>().Where(v => v.Name == valueName).FirstOrDefault();
         }
 
         public void Save(LookupValue lookupValue )
@@ -101,13 +103,13 @@ namespace _3D2A4U_BusinessLayer
         public IList<BarrelLength> BarrelLength { get; set; }
         public IList<BarrelPattern> BarrelPattern { get; set; }
         public IList<Caliber> Caliber { get; set; }
-        public IList<CloneOf> Clone { get; set; }
+        public IList<CloneOf> CloneOf { get; set; }
         public IList<Developer> Developer { get; set; }
         public IList<DevTeam> DevTeam { get; set; }
         public IList<FileFormat> FileFormat { get; set; }
         public IList<FireControlPattern> FireControlPattern { get; set; }
         public IList<GripPattern> GripPattern { get; set; }
-        public IList<MagazinePattern> MagPattern { get; set; }
+        public IList<MagazinePattern> MagazinePattern { get; set; }
         public IList<ModelType> ModelType { get; set; }
         public IList<RailType> RailType { get; set; }
         public IList<ReceiverPattern> ReceiverPattern { get; set; }

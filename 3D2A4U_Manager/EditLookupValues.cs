@@ -4,6 +4,7 @@ using _3D2A4U_Model;
 using JsonFlatFileDataStore;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -58,7 +59,7 @@ namespace _3D2A4U_Manager
                 //create a new instance of our specific LookupValue subtype
                 var newVal = Activator.CreateInstance(ValueType, [txtName.Text, (int)nudSortOrder.Value]);
                 if (newVal != null)
-                    ((IList<dynamic>)lstValues.DataSource).Add(newVal);
+                    ((System.Collections.IList)lstValues.DataSource).Add(newVal);
                 //refresh the control so it shows the new guy
                 var tmp = lstValues.DataSource;
                 lstValues.DataSource = new List<LookupValue>(); //throw a dummy list in here so we don't lose our Display- and ValueMembers
@@ -83,7 +84,7 @@ namespace _3D2A4U_Manager
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            foreach (var item in (IList<dynamic>)lstValues.DataSource)
+            foreach (var item in (IList)lstValues.DataSource)
             {
                 biz.Save((LookupValue)item);
             }
