@@ -34,6 +34,7 @@
             tabWelcome = new TabPage();
             tabFiles = new TabPage();
             spcFileSearch = new SplitContainer();
+            lblMessage = new Label();
             btnNewFile = new Button();
             tblFileFilters = new TableLayoutPanel();
             fDeveloper = new FilterKvp();
@@ -146,6 +147,7 @@
             // 
             // spcFileSearch.Panel1
             // 
+            spcFileSearch.Panel1.Controls.Add(lblMessage);
             spcFileSearch.Panel1.Controls.Add(btnNewFile);
             spcFileSearch.Panel1.Controls.Add(tblFileFilters);
             spcFileSearch.Panel1.Controls.Add(btnSearch);
@@ -159,6 +161,14 @@
             spcFileSearch.SplitterDistance = 166;
             spcFileSearch.TabIndex = 1;
             spcFileSearch.SplitterMoved += spcFileSearch_SplitterMoved;
+            // 
+            // lblMessage
+            // 
+            lblMessage.AutoSize = true;
+            lblMessage.Location = new Point(5, 143);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(0, 15);
+            lblMessage.TabIndex = 4;
             // 
             // btnNewFile
             // 
@@ -621,6 +631,7 @@
             tabWelcome.PerformLayout();
             tabFiles.ResumeLayout(false);
             spcFileSearch.Panel1.ResumeLayout(false);
+            spcFileSearch.Panel1.PerformLayout();
             spcFileSearch.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)spcFileSearch).EndInit();
             spcFileSearch.ResumeLayout(false);
@@ -684,5 +695,6 @@
         private Label label6;
         private Label label7;
         private CheckBox chkDarkMode;
+        private Label lblMessage;
     }
 }

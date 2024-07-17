@@ -28,12 +28,14 @@ namespace _3D2A4U_BusinessLayer
 
         public void SaveModel(Model model)
         {
-            Task<bool> result;
+            //Task<bool> result;
+            dynamic result;
 
             if (ds.GetItem(model.Id.ToString()) != null)
-                result = ds.InsertItemAsync(model.Id.ToString(), model);
+                result = ds.InsertItem(model.Id.ToString(), model);
             else
-                result = ds.UpdateItemAsync(model.Id.ToString(), model);
+                result = ds.UpdateItem(model.Id.ToString(), model);
+                //result = ds.UpdateItemAsync(model.Id.ToString(), model).Result;
         }
 
         public List<LookupValue> GetLookupValues(string typeName)

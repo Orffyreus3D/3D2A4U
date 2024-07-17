@@ -120,8 +120,10 @@ namespace _3D2A4U_Manager
                 string name = ((LookupValue)guy).Name.ToString();
                 if (!tvApplied.Nodes.Find(name, true).Any())
                     AddValue(parentNodeName, name);
+                tvApplied.Nodes[parentNodeName].Expand();
             }
             tvApplied.EndUpdate();
+            //lbxValues.DataSource;
         }
 
         /// <summary>

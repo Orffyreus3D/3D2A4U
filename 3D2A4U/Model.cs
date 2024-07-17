@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,8 @@ namespace _3D2A4U_Model
         /// <summary>
         /// Returns collection of LookupValues where they aren't null
         /// </summary>
-        public List<LookupValue> LookupValues { 
+        public List<LookupValue> LookupValues
+        {
             get
             {
                 List<LookupValue> values = new List<LookupValue>();
@@ -42,7 +44,7 @@ namespace _3D2A4U_Model
                 }
 
                 return values;
-            } 
+            }
         }
 
         /// <summary>
@@ -57,6 +59,53 @@ namespace _3D2A4U_Model
         public Model()
         {
             Id = Guid.Empty;
+        }
+
+        [Serializable]
+        public class ModelWad
+        {
+            public Guid Id { get; set; }
+            public int? BarrelLength { get; set; }
+            public int? BarrelPattern { get; set; }
+            public int? Caliber { get; set; }
+            public int? CloneOf { get; set; }
+            public string Description { get; set; }
+            public int? Developer { get; set; }
+            public int? DevTeam { get; set; }
+            public int? FileFormat { get; set; }
+            public int? FireControlPattern { get; set; }
+            public int? GripPattern { get; set; }
+            public int? MagazinePattern { get; set; }
+            public int? ModelType { get; set; }
+            public string Name { get; set; }
+            public int? RailType { get; set; }
+            public int? ReceiverPattern { get; set; }
+            public int? StockPattern { get; set; }
+            public string Url { get; set; }
+
+            public ModelWad() { }
+            public ModelWad(Model model)
+            {
+                this.Id = model.Id;
+                //TODO: iterate thru all properties of type LookupValue to do this more scalably
+                this.BarrelPattern = model.BarrelPattern?.Id;
+                this.BarrelLength = model.BarrelLength?.Id;
+                this.Caliber = model.Caliber?.Id;
+                this.CloneOf = model.CloneOf?.Id;
+                this.Description = model.Description;
+                this.Developer = model.Developer?.Id;
+                this.DevTeam = model.DevTeam?.Id;
+                this.FileFormat = model.FileFormat?.Id;
+                this.FireControlPattern = model.FireControlPattern?.Id;
+                this.GripPattern = model.GripPattern?.Id;
+                this.MagazinePattern = model.MagazinePattern?.Id;
+                this.ModelType = model.ModelType?.Id;
+                this.Name = model.Name;
+                this.RailType = model.RailType?.Id;
+                this.ReceiverPattern = model.ReceiverPattern?.Id;
+                this.StockPattern = model.StockPattern?.Id;
+                this.Url = model.Url;
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static _3D2A4U_Model.Model;
 
 namespace _3D2A4U_BusinessLayer
 {
@@ -97,6 +98,29 @@ namespace _3D2A4U_BusinessLayer
             {
                 //((DocumentCollection)beaf).GetNextIdValue(lookupValue);
             }
+        }
+
+        public List<Model> GetModels()
+        {
+            return new List<Model>(); 
+        }
+
+
+        public Model GetModelFromWad(ModelWad wad)
+        {
+            Model getMod = new Model();
+
+            //dynamically map all values to the correct one
+            foreach (PropertyInfo pwad in typeof(ModelWad).GetProperties().Where(pi => pi.PropertyType == typeof(LookupValue)))
+            {
+                PropertyInfo pmod = typeof(Model).GetProperty(pwad.Name);
+                dynamic val = pmod.GetValue(wad);
+                if (pmod.PropertyType == typeof(LookupValue))
+                    val = GetLookupValue(pmod.Name, val.ToString());
+                pmod.SetValue(getMod, pmod.GetValue(wad, null), null);
+            }
+
+            return getMod;
         }
 
         #region ILists/Properties

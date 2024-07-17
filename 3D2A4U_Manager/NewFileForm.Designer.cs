@@ -150,6 +150,7 @@
             lbxValues.TabIndex = 11;
             lbxValues.ValueMember = "Id";
             lbxValues.SelectedIndexChanged += lbxValues_SelectedIndexChanged;
+            lbxValues.DoubleClick += btnAdd_Click;
             // 
             // label4
             // 

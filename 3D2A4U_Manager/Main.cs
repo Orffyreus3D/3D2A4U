@@ -57,7 +57,7 @@ namespace _3D2A4U_Manager
 
         private void btnNewFile_Click(object sender, EventArgs e)
         {
-            //show the form for edit54
+            //show the form for edit
             NewFileForm newFile = new NewFileForm();
             newFile.vdb = vdb;
             DialogResult dr = newFile.ShowDialog();
@@ -66,8 +66,6 @@ namespace _3D2A4U_Manager
             if (dr == DialogResult.OK)
             {
                 biz.SaveModel(newFile?.Model);
-                //TODO
-                MessageBox.Show("Not yet implemented :(");
             }
         }
 
@@ -122,7 +120,12 @@ namespace _3D2A4U_Manager
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //gather search criteria
+            Dictionary<string,string> filters = new Dictionary<string,string>();
+            //TODO
 
+            //load models and find matches
+            gvFileSearchResults.DataSource = biz.GetModels(filters);
         }
     }
 }
