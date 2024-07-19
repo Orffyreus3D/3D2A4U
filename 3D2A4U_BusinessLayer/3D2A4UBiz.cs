@@ -9,12 +9,12 @@ namespace _3D2A4U_BusinessLayer
     {
         private readonly DataStore ds = new(path);
 
-        public List<Model> GetModels(Dictionary<string,string> Filters)
+        public List<Model.ModelWad> GetModels(Dictionary<string,string> Filters)
         {
-            var q = ds.GetCollection<Model>().AsQueryable();
+            var q = ds.GetCollection<Model.ModelWad>().AsQueryable();
             foreach (var filter in Filters)
             {
-                var pi = typeof(Model).GetProperty(filter.Key);
+                var pi = typeof(Model.ModelWad).GetProperty(filter.Key);
                 q = q.Where(i => pi?.GetValue(i)?.ToString() == filter.Value);
             }
 
@@ -26,13 +26,13 @@ namespace _3D2A4U_BusinessLayer
             return ds.GetItem(id.ToString());
         }
 
-        public void SaveModel(Model model)
+        public void SaveModel(Model.ModelWad model)
         {
             //Task<bool> result;
             dynamic result;
 
-            if (ds.GetItem(model.Id.ToString()) != null)
-                result = ds.InsertItem(model.Id.ToString(), model);
+            if (ds.GetItem<Model.ModelWad>(model.Id.ToString()) != null)
+                result = ds.InsertItem<Model.ModelWad>("modelWad", model);
             else
                 result = ds.UpdateItem(model.Id.ToString(), model);
                 //result = ds.UpdateItemAsync(model.Id.ToString(), model).Result;

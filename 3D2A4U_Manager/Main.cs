@@ -65,7 +65,7 @@ namespace _3D2A4U_Manager
             //save if we save
             if (dr == DialogResult.OK)
             {
-                biz.SaveModel(newFile?.Model);
+                biz.SaveModel(newFile?.Model.AsModelWad());
             }
         }
 

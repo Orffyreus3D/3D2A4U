@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
@@ -11,6 +12,8 @@ namespace _3D2A4U_Model
     [Serializable]
     public class Model
     {
+        public delegate LookupValue GetLookupValue(int id);
+
         public Guid Id { get; set; }
         public BarrelLength BarrelLength { get; set; }
         public BarrelPattern BarrelPattern { get; set; }
@@ -59,6 +62,33 @@ namespace _3D2A4U_Model
         public Model()
         {
             Id = Guid.Empty;
+        }
+
+        public ModelWad AsModelWad()
+        {
+            return new ModelWad(this); 
+        }
+
+        public void LoadModelWad(ModelWad modelWad, GetLookupValue loadMethod)
+        {
+            //TODO: refactor this to use a loop with reflection and activator
+            BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(modelWad.BarrelLength);
+            BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(modelWad.BarrelPattern);
+            Caliber = (Caliber)loadMethod.DynamicInvoke(modelWad.Caliber);
+            CloneOf = (CloneOf)loadMethod.DynamicInvoke(modelWad.CloneOf);
+            Description = modelWad.Description;
+            Developer = (Developer)loadMethod.DynamicInvoke(modelWad.Developer);
+            DevTeam = (DevTeam)loadMethod.DynamicInvoke(modelWad.DevTeam);
+            FileFormat = (FileFormat)loadMethod.DynamicInvoke(modelWad.FileFormat);
+            FireControlPattern = (FireControlPattern)loadMethod.DynamicInvoke(modelWad.FireControlPattern);
+            GripPattern = (GripPattern)loadMethod.DynamicInvoke(modelWad.GripPattern);
+            MagazinePattern = (MagazinePattern)loadMethod.DynamicInvoke(modelWad.MagazinePattern); 
+            ModelType = (ModelType)loadMethod.DynamicInvoke(modelWad.ModelType);
+            Name = modelWad.Name;
+            RailType = (RailType)loadMethod.DynamicInvoke(modelWad.RailType);
+            ReceiverPattern = (ReceiverPattern)loadMethod.DynamicInvoke(modelWad.ReceiverPattern);
+            StockPattern = (StockPattern)loadMethod.DynamicInvoke(modelWad.StockPattern);
+            Url = modelWad.Url;
         }
 
         [Serializable]
