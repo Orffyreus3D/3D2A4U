@@ -122,7 +122,14 @@ namespace _3D2A4U_Manager
         {
             //gather search criteria
             Dictionary<string,string> filters = new Dictionary<string,string>();
-            //TODO
+            foreach (FilterKvp kvp in tblFileFilters.Controls.OfType<FilterKvp>())
+            {
+                int? val = (int?)kvp.ComboBox.SelectedValue;
+                if (val.HasValue && val.Value > 0)
+                    filters.Add(
+                        kvp.ComboBox.DataSource.GetType().GenericTypeArguments[0].Name,
+                        kvp.ComboBox.SelectedValue.ToString());
+            }
 
             //load models and find matches
             gvFileSearchResults.DataSource = biz.GetModels(filters);
