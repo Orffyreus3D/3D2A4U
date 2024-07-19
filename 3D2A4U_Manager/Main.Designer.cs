@@ -62,6 +62,7 @@
             label7 = new Label();
             tabSettings = new TabPage();
             groupBox1 = new GroupBox();
+            chkAddModels = new CheckBox();
             chkDarkMode = new CheckBox();
             chkAllowLookupEdit = new CheckBox();
             textBox3 = new TextBox();
@@ -180,6 +181,7 @@
             btnNewFile.Text = "Add New Entry...";
             toolTip1.SetToolTip(btnNewFile, "Use the filters to pick the values you want, enter text values, and save");
             btnNewFile.UseVisualStyleBackColor = true;
+            btnNewFile.Visible = false;
             btnNewFile.Click += btnNewFile_Click;
             // 
             // tblFileFilters
@@ -500,6 +502,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(chkAddModels);
             groupBox1.Controls.Add(chkDarkMode);
             groupBox1.Controls.Add(chkAllowLookupEdit);
             groupBox1.Controls.Add(textBox3);
@@ -517,6 +520,17 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Data Wad";
+            // 
+            // chkAddModels
+            // 
+            chkAddModels.AutoSize = true;
+            chkAddModels.Location = new Point(1068, 24);
+            chkAddModels.Name = "chkAddModels";
+            chkAddModels.Size = new Size(154, 19);
+            chkAddModels.TabIndex = 9;
+            chkAddModels.Text = "Allow Adding of Models";
+            chkAddModels.UseVisualStyleBackColor = true;
+            chkAddModels.CheckedChanged += chkAddModels_CheckedChanged;
             // 
             // chkDarkMode
             // 
@@ -696,5 +710,6 @@
         private Label label7;
         private CheckBox chkDarkMode;
         private Label lblMessage;
+        private CheckBox chkAddModels;
     }
 }

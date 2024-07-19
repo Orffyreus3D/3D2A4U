@@ -55,6 +55,16 @@ namespace _3D2A4U_Manager
             }
         }
 
+        /// <summary>
+        /// Allows the user to add new models to the repo (since we want to search more than add, usually)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkAddModels_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewFile.Visible = ((CheckBox)sender).Checked;
+        }
+
         private void btnNewFile_Click(object sender, EventArgs e)
         {
             //show the form for edit
@@ -121,7 +131,7 @@ namespace _3D2A4U_Manager
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //gather search criteria
-            Dictionary<string,string> filters = new Dictionary<string,string>();
+            Dictionary<string, string> filters = new Dictionary<string, string>();
             foreach (FilterKvp kvp in tblFileFilters.Controls.OfType<FilterKvp>())
             {
                 int? val = (int?)kvp.ComboBox.SelectedValue;

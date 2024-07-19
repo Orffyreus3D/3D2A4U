@@ -28,14 +28,13 @@ namespace _3D2A4U_BusinessLayer
 
         public void SaveModel(Model.ModelWad model)
         {
-            //Task<bool> result;
             dynamic result;
 
-            if (ds.GetItem<Model.ModelWad>(model.Id.ToString()) != null)
+            //if (ds.GetItem<Model.ModelWad>(model.Id.ToString()) != null)
+            if (!ds.GetCollection<Model.ModelWad>().AsQueryable().Any(m => m?.Id.ToString() == model?.Id.ToString()))
                 result = ds.InsertItem<Model.ModelWad>("modelWad", model);
             else
                 result = ds.UpdateItem(model.Id.ToString(), model);
-                //result = ds.UpdateItemAsync(model.Id.ToString(), model).Result;
         }
 
         public List<LookupValue> GetLookupValues(string typeName)
