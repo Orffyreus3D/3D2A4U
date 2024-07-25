@@ -48,7 +48,7 @@ namespace _3D2A4U_Manager
             {
                 foreach(TreeNode valueNode in typeNode.Nodes)
                 {
-                    Model.AddLookupValue(vdb.GetLookupValue(typeNode.Text, valueNode.Text));
+                    Model.AddLookupValue(vdb.GetLookupValue(typeNode.Text, @valueNode.Text));
                 }
             }
         }
@@ -118,8 +118,8 @@ namespace _3D2A4U_Manager
             foreach (var guy in lbxValues.SelectedItems)
             {
                 string name = ((LookupValue)guy).Name.ToString();
-                if (!tvApplied.Nodes.Find(name, true).Any())
-                    AddValue(parentNodeName, name);
+                if (!tvApplied.Nodes.Find(@name, true).Any())
+                    AddValue(parentNodeName, @name);
                 tvApplied.Nodes[parentNodeName].Expand();
             }
             tvApplied.EndUpdate();
