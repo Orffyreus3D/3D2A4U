@@ -12,7 +12,7 @@ namespace _3D2A4U_Model
     [Serializable]
     public class Model
     {
-        public delegate LookupValue GetLookupValue(int id);
+        public delegate LookupValue GetLookupValue(string typeName, int? id);
 
         public Guid Id { get; set; }
         public BarrelLength BarrelLength { get; set; }
@@ -69,25 +69,30 @@ namespace _3D2A4U_Model
             return new ModelWad(this); 
         }
 
+        /// <summary>
+        /// Loads a ModelWad into the Model
+        /// </summary>
+        /// <param name="modelWad">the wad you wanna inflate to full flavor values</param>
+        /// <param name="loadMethod">Method for getting the object you want (as a LookupValue)</param>
         public void LoadModelWad(ModelWad modelWad, GetLookupValue loadMethod)
         {
             //TODO: refactor this to use a loop with reflection and activator
-            BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(modelWad.BarrelLength);
-            BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(modelWad.BarrelPattern);
-            Caliber = (Caliber)loadMethod.DynamicInvoke(modelWad.Caliber);
-            CloneOf = (CloneOf)loadMethod.DynamicInvoke(modelWad.CloneOf);
+            BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(typeof(BarrelLength).Name, modelWad.BarrelLength);
+            BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(typeof(BarrelPattern).Name, modelWad.BarrelPattern);
+            Caliber = (Caliber)loadMethod.DynamicInvoke(            typeof(Caliber).Name, modelWad.Caliber);
+            CloneOf = (CloneOf)loadMethod.DynamicInvoke(            typeof(CloneOf).Name, modelWad.CloneOf);
             Description = modelWad.Description;
-            Developer = (Developer)loadMethod.DynamicInvoke(modelWad.Developer);
-            DevTeam = (DevTeam)loadMethod.DynamicInvoke(modelWad.DevTeam);
-            FileFormat = (FileFormat)loadMethod.DynamicInvoke(modelWad.FileFormat);
-            FireControlPattern = (FireControlPattern)loadMethod.DynamicInvoke(modelWad.FireControlPattern);
-            GripPattern = (GripPattern)loadMethod.DynamicInvoke(modelWad.GripPattern);
-            MagazinePattern = (MagazinePattern)loadMethod.DynamicInvoke(modelWad.MagazinePattern); 
-            ModelType = (ModelType)loadMethod.DynamicInvoke(modelWad.ModelType);
+            Developer = (Developer)loadMethod.DynamicInvoke(        typeof(Developer).Name, modelWad.Developer);
+            DevTeam = (DevTeam)loadMethod.DynamicInvoke(typeof(DevTeam).Name, modelWad.DevTeam);
+            FileFormat = (FileFormat)loadMethod.DynamicInvoke(typeof(FileFormat).Name, modelWad.FileFormat);
+            FireControlPattern = (FireControlPattern)loadMethod.DynamicInvoke(typeof(FireControlPattern).Name, modelWad.FireControlPattern);
+            GripPattern = (GripPattern)loadMethod.DynamicInvoke(typeof(GripPattern).Name, modelWad.GripPattern);
+            MagazinePattern = (MagazinePattern)loadMethod.DynamicInvoke(typeof(MagazinePattern).Name, modelWad.MagazinePattern); 
+            ModelType = (ModelType)loadMethod.DynamicInvoke(typeof(ModelType)  .Name, modelWad.ModelType);
             Name = modelWad.Name;
-            RailType = (RailType)loadMethod.DynamicInvoke(modelWad.RailType);
-            ReceiverPattern = (ReceiverPattern)loadMethod.DynamicInvoke(modelWad.ReceiverPattern);
-            StockPattern = (StockPattern)loadMethod.DynamicInvoke(modelWad.StockPattern);
+            RailType = (RailType)loadMethod.DynamicInvoke(typeof(RailType).Name, modelWad.RailType);
+            ReceiverPattern = (ReceiverPattern)loadMethod.DynamicInvoke(typeof(ReceiverPattern).Name, modelWad.ReceiverPattern);
+            StockPattern = (StockPattern)loadMethod.DynamicInvoke(typeof(StockPattern).Name, modelWad.StockPattern);
             Url = modelWad.Url;
         }
 

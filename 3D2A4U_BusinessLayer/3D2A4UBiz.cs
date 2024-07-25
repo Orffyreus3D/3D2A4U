@@ -2,6 +2,7 @@
 using _3D2A4U_Model;
 using System.Reflection;
 using System.ComponentModel.Design;
+using System.ComponentModel;
 
 namespace _3D2A4U_BusinessLayer
 {
@@ -9,16 +10,30 @@ namespace _3D2A4U_BusinessLayer
     {
         private readonly DataStore ds = new(path);
 
-        public List<Model.ModelWad> GetModels(Dictionary<string,string> Filters)
+        public List<Model> GetModels(Dictionary<string,string> Filters)
         {
+            VirtualDatabase vdb = new VirtualDatabase(path);
+
+            //build out the query to fetch our stuff
             var q = ds.GetCollection<Model.ModelWad>().AsQueryable();
+            List<Model> models = new List<Model>();
             foreach (var filter in Filters)
             {
                 var pi = typeof(Model.ModelWad).GetProperty(filter.Key);
                 q = q.Where(i => pi?.GetValue(i)?.ToString() == filter.Value);
             }
 
-            return q.ToList();
+            //convert each result into a model from modelwad
+            foreach (Model.ModelWad wad in q.ToList())
+            { 
+                Model model = new Model();
+                model.LoadModelWad(wad, vdb.GetLookupValue);
+            }
+                
+                //models.Add(vdb.GetModelFromWad(wad));
+            
+
+            return models;
         }
 
         public Model GetModel(Guid id)

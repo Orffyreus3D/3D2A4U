@@ -91,6 +91,17 @@ namespace _3D2A4U_BusinessLayer
             return (LookupValue)valueCollection.Cast<LookupValue>().Where(v => v.Name == valueName).FirstOrDefault();
         }
 
+        public LookupValue GetLookupValue(string typeName, int? id)
+        {
+            PropertyInfo pi = this.GetType().GetProperties().Where(p =>p.Name == typeName).FirstOrDefault();
+            IList valueCollection = (IList)(pi.GetValue(this));
+            return (LookupValue)valueCollection.Cast<LookupValue>().Where(v => v.Id == id).DefaultIfEmpty(null).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Not implemented, use biz layer instead
+        /// </summary>
+        /// <param name="lookupValue"></param>
         public void Save(LookupValue lookupValue )
         {
             dynamic beaf = this.GetType().GetProperty(lookupValue.GetType().Name)?.GetValue(this);
@@ -111,7 +122,8 @@ namespace _3D2A4U_BusinessLayer
             Model getMod = new Model();
 
             //dynamically map all values to the correct one
-            foreach (PropertyInfo pwad in typeof(ModelWad).GetProperties().Where(pi => pi.PropertyType == typeof(LookupValue)))
+            foreach (PropertyInfo pwad in typeof(Model.ModelWad).GetProperties()
+                .Where(pi => (typeof(Model).GetProperty(pi.Name).PropertyType.IsAssignableTo(typeof(LookupValue))))) //Have to look up correspondingly named properties in Model from ModelWad
             {
                 PropertyInfo pmod = typeof(Model).GetProperty(pwad.Name);
                 dynamic val = pmod.GetValue(wad);
