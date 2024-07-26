@@ -78,21 +78,21 @@ namespace _3D2A4U_Model
         {
             //TODO: refactor this to use a loop with reflection and activator
             BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(typeof(BarrelLength).Name, modelWad.BarrelLength);
-            BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(typeof(BarrelPattern).Name, modelWad.BarrelPattern);
-            Caliber = (Caliber)loadMethod.DynamicInvoke(            typeof(Caliber).Name, modelWad.Caliber);
-            CloneOf = (CloneOf)loadMethod.DynamicInvoke(            typeof(CloneOf).Name, modelWad.CloneOf);
+            BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(            typeof(BarrelPattern).Name, modelWad.BarrelPattern);
+            Caliber = (Caliber)loadMethod.DynamicInvoke(                        typeof(Caliber).Name, modelWad.Caliber);
+            CloneOf = (CloneOf)loadMethod.DynamicInvoke(                        typeof(CloneOf).Name, modelWad.CloneOf);
             Description = modelWad.Description;
-            Developer = (Developer)loadMethod.DynamicInvoke(        typeof(Developer).Name, modelWad.Developer);
-            DevTeam = (DevTeam)loadMethod.DynamicInvoke(typeof(DevTeam).Name, modelWad.DevTeam);
-            FileFormat = (FileFormat)loadMethod.DynamicInvoke(typeof(FileFormat).Name, modelWad.FileFormat);
-            FireControlPattern = (FireControlPattern)loadMethod.DynamicInvoke(typeof(FireControlPattern).Name, modelWad.FireControlPattern);
-            GripPattern = (GripPattern)loadMethod.DynamicInvoke(typeof(GripPattern).Name, modelWad.GripPattern);
-            MagazinePattern = (MagazinePattern)loadMethod.DynamicInvoke(typeof(MagazinePattern).Name, modelWad.MagazinePattern); 
-            ModelType = (ModelType)loadMethod.DynamicInvoke(typeof(ModelType)  .Name, modelWad.ModelType);
+            Developer = (Developer)loadMethod.DynamicInvoke(                    typeof(Developer).Name, modelWad.Developer);
+            DevTeam = (DevTeam)loadMethod.DynamicInvoke(                        typeof(DevTeam).Name, modelWad.DevTeam);
+            FileFormat = (FileFormat)loadMethod.DynamicInvoke(                  typeof(FileFormat).Name, modelWad.FileFormat);
+            FireControlPattern = (FireControlPattern)loadMethod.DynamicInvoke(  typeof(FireControlPattern).Name, modelWad.FireControlPattern);
+            GripPattern = (GripPattern)loadMethod.DynamicInvoke(                typeof(GripPattern).Name, modelWad.GripPattern);
+            MagazinePattern = (MagazinePattern)loadMethod.DynamicInvoke(        typeof(MagazinePattern).Name, modelWad.MagazinePattern); 
+            ModelType = (ModelType)loadMethod.DynamicInvoke(                    typeof(ModelType)  .Name, modelWad.ModelType);
             Name = modelWad.Name;
-            RailType = (RailType)loadMethod.DynamicInvoke(typeof(RailType).Name, modelWad.RailType);
-            ReceiverPattern = (ReceiverPattern)loadMethod.DynamicInvoke(typeof(ReceiverPattern).Name, modelWad.ReceiverPattern);
-            StockPattern = (StockPattern)loadMethod.DynamicInvoke(typeof(StockPattern).Name, modelWad.StockPattern);
+            RailType = (RailType)loadMethod.DynamicInvoke(                      typeof(RailType).Name, modelWad.RailType);
+            ReceiverPattern = (ReceiverPattern)loadMethod.DynamicInvoke(        typeof(ReceiverPattern).Name, modelWad.ReceiverPattern);
+            StockPattern = (StockPattern)loadMethod.DynamicInvoke(              typeof(StockPattern).Name, modelWad.StockPattern);
             Url = modelWad.Url;
         }
 
