@@ -22,7 +22,12 @@ namespace _3D2A4U_Model
             SortOrder = sortOrder;
         }
 
-        public abstract dynamic GetAsDocumentCollection();
+		public override string ToString()
+		{
+			return Name;
+		}
+
+		public abstract dynamic GetAsDocumentCollection();
 
         public Type GetDocumentCollectionType()
         {

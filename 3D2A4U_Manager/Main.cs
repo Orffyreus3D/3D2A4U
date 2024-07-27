@@ -123,10 +123,6 @@ namespace _3D2A4U_Manager
             }
         }
 
-        private void gvFileSearchResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -142,7 +138,32 @@ namespace _3D2A4U_Manager
             }
 
             //load models and find matches
-            gvFileSearchResults.DataSource = biz.GetModels(filters);
+            List<Model> models = biz.GetModels(filters);
+            //setup columns if we have results
+            if (models != null && models.Count > 0)
+            {
+                //TODO: column matched to results
+                //if (gvFileSearchResults.Columns.Count == 0) SetupResultColumns();
+            }
+            gvFileSearchResults.DataSource = models;
         }
+        private void SetupResultColumns()
+        {
+            //set up the static properties
+			DataGridViewColumn idCol = new DataGridViewColumn {	Visible = false, Name = "Id", ValueType = typeof(Guid), DataPropertyName = "Id" };
+			gvFileSearchResults.Columns.Add(idCol);
+            gvFileSearchResults.Columns.Add("Name", "Name");
+			DataGridViewLinkColumn urlCol = new DataGridViewLinkColumn { DataPropertyName = "Url", HeaderText="Url" };
+			gvFileSearchResults.Columns.Add(urlCol);
+            gvFileSearchResults.Columns.Add("Description", "Description");
+
+            //then iterate thru the rest of the LookupValues, so we can add more later
+		    foreach (var lv in typeof(Model).GetProperties().Where(p => p.PropertyType.IsAssignableTo(typeof(LookupValue))).ToList())
+		    {
+                DataGridViewColumn column = new DataGridViewColumn();
+                column.HeaderText = lv.Name;
+                column.DataPropertyName = lv.Name;
+		    }
+	    }
     }
 }

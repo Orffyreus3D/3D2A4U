@@ -28,6 +28,7 @@ namespace _3D2A4U_BusinessLayer
             { 
                 Model model = new Model();
                 model.LoadModelWad(wad, vdb.GetLookupValue);
+                models.Add(model);
             }
                 
                 //models.Add(vdb.GetModelFromWad(wad));

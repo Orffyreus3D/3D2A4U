@@ -77,7 +77,8 @@ namespace _3D2A4U_Model
         public void LoadModelWad(ModelWad modelWad, GetLookupValue loadMethod)
         {
             //TODO: refactor this to use a loop with reflection and activator
-            BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(typeof(BarrelLength).Name, modelWad.BarrelLength);
+            Id = modelWad.Id;
+            BarrelLength = (BarrelLength)loadMethod.DynamicInvoke(              typeof(BarrelLength).Name, modelWad.BarrelLength);
             BarrelPattern = (BarrelPattern)loadMethod.DynamicInvoke(            typeof(BarrelPattern).Name, modelWad.BarrelPattern);
             Caliber = (Caliber)loadMethod.DynamicInvoke(                        typeof(Caliber).Name, modelWad.Caliber);
             CloneOf = (CloneOf)loadMethod.DynamicInvoke(                        typeof(CloneOf).Name, modelWad.CloneOf);
