@@ -56,7 +56,8 @@ namespace _3D2A4U_Model
         /// <param name="value"></param>
         public void AddLookupValue(LookupValue value)
         {
-            this.GetType().GetProperty(value.GetType().Name)?.SetValue(this, value);
+            if (value != null)
+                this.GetType().GetProperty(value.GetType().Name)?.SetValue(this, value);
         }
 
         public Model()
