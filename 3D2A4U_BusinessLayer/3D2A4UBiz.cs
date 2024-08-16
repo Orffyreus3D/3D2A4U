@@ -3,6 +3,7 @@ using _3D2A4U_Model;
 using System.Reflection;
 using System.ComponentModel.Design;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace _3D2A4U_BusinessLayer
 {
@@ -39,7 +40,12 @@ namespace _3D2A4U_BusinessLayer
 
         public Model GetModel(Guid id)
         {
-            return ds.GetItem(id.ToString());
+            Dictionary<string,string> biffdic = new Dictionary<string,string>();
+            biffdic.Add("Id", id.ToString());
+            var biff = GetModels( biffdic );
+            Debug.Assert(biff.Count == 1, string.Format("Model.Id {0} not found", id.ToString()));
+
+            return biff.First();
         }
 
         /// <summary>

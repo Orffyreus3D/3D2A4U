@@ -71,10 +71,13 @@ namespace _3D2A4U_Manager
                 this.Description = Model.Description;
                 this.Url = new Uri(Model.Url);
 
+                //load the tree and then expand all nodes cuz we wanna see it by default
                 foreach (LookupValue lv in Model.LookupValues)
                 {
                     AddValue(lv.GetType().Name, lv.Name);
                 }
+
+                tvApplied.ExpandAll();
             }
         }
 
