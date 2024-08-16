@@ -191,6 +191,7 @@
 			btnSortUp.TabIndex = 5;
 			btnSortUp.Text = "↑";
 			btnSortUp.UseVisualStyleBackColor = true;
+			btnSortUp.Click += btnSortChange_Click;
 			// 
 			// btnSortDown
 			// 
@@ -200,6 +201,7 @@
 			btnSortDown.TabIndex = 6;
 			btnSortDown.Text = "↓";
 			btnSortDown.UseVisualStyleBackColor = true;
+			btnSortDown.Click += btnSortChange_Click;
 			// 
 			// btnSort
 			// 

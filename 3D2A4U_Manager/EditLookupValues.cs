@@ -116,11 +116,44 @@ namespace _3D2A4U_Manager
 			//sort the list by name values, then update the sort order
 			List<LookupValue> list = ((IEnumerable<LookupValue>)lstValues.DataSource)?.OrderBy(lv => lv.Name.ToLower()).ToList();
 			foreach (LookupValue item in list)
-			{
 				item.SortOrder = list.IndexOf(item);
-				biz.Save(item);
-			}
 			lstValues.DataSource = list;
+		}
+
+		private void btnSortChange_Click(object sender, EventArgs e)
+		{
+			int selSort;
+			int neighborSort;
+			int sortShift;
+			switch (sender == btnSortUp)
+			{
+				case true: 
+					sortShift = -1;
+					break;
+				case false: 
+					sortShift = 1;
+					break;
+			}
+			int selIx = lstValues.SelectedIndex;
+			int neighborIx = selIx + sortShift;
+
+			//take the selected guy and the guy one dir away from him and swap sort values; if out of range, then we're done
+			if (neighborIx >= 0 & neighborIx < ((List<LookupValue>)lstValues.DataSource).Count)
+			{
+				lstValues.BeginUpdate();
+
+				selSort = ((List<LookupValue>)lstValues.DataSource)[selIx].SortOrder;
+				neighborSort = ((List<LookupValue>)lstValues.DataSource)[neighborIx].SortOrder;
+				((List<LookupValue>)lstValues.DataSource)[selIx].SortOrder = neighborSort;
+				((List<LookupValue>)lstValues.DataSource)[neighborIx].SortOrder = selSort;
+
+				//finish up by reloading the list
+				lstValues.DataSource = ((IEnumerable<LookupValue>)lstValues.DataSource).OrderBy(lv => lv.SortOrder).ToList();
+
+				lstValues.EndUpdate();
+				lstValues.SelectedIndex = neighborIx;
+			}
+
 		}
 	}
 }
